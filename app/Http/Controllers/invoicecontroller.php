@@ -106,9 +106,9 @@ class invoicecontroller extends Controller
         return view('invoice_page_detail',['data_invoice_penagihan_detail' => $data_invoice_penagihan_detail]);  
     }
 
-    public function cetak(Request $Request){
+    public function cetak($id){
         $data_invoice = DB::table('invoice')
-            ->where('id_invoice',$Request->id_invoice)
+            ->where('id_invoice',$id)
             ->get();
          
         $pdf = PDF::loadview('pdf_invoice',['data_invoice' => $data_invoice]);

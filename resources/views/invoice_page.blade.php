@@ -260,7 +260,7 @@
 		                                        <td>{{$data->angkut_dari}}</td>
 		                                        <td>{{$data->tujuan}}</td>
 		                                        <td>
-		                                        	<a href="/invoice-penagihan/detail/{{$data->id_invoice}}" class="btn btn-sm btn-primary">
+		                                        	<a href="/invoice/detail/{{$data->id_invoice}}" class="btn btn-sm btn-primary">
 		                                            	<i class="fas fa-edit fa-sm"></i>
 		                                            	Detail
 		                                            </a>
@@ -268,9 +268,9 @@
 		                                            	<i class="fas fa-edit fa-sm"></i>
 		                                            	Edit
 		                                            </a>
-		                                            <a href="javascript:" class="btn btn-sm btn-primary" onclick="pdf({{$data->id_invoice}})">
-		                                            	<i class="fas fa-print fa-sm"></i>
-		                                            	PDF
+		                                            <a href="/invoice/pdf/{{$data->id_invoice}}" class="btn btn-sm btn-primary">
+		                                            	<i class="fas fa-edit fa-sm"></i>
+		                                            	Cetak PDF
 		                                            </a>
 		                                            <a href="javascript:" class="btn btn-sm btn-danger" onclick="hapus({{$data->id_invoice}})">
 		                                            	<i class="fas fa-trash fa-sm"></i>
@@ -449,13 +449,10 @@
 						<form method="post" action="{{url('/invoice/edit')}}">
 							{{ csrf_field() }}
 							<div class="form-group">
-								<label>ID Invoice</label>
-								<input type="text" name="id_invoice" id="id_invoice" readonly required>
-							</div>
-							<div class="form-group">
 								<div class="row">
 									<div class="col-4">
 										<label>Konsumen</label>
+										<input type="text" name="id_invoice" id="id_invoice" readonly required hidden>
 										<input type="text" name="konsumen" class="form-control" id="konsumen" required>	
 									</div>
 									<div class="col-4">

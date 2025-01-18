@@ -19,5 +19,4 @@ Route::get('/invoice/tangkap/{id}',[invoicecontroller::class,'tangkap']);
 Route::post('/invoice/edit',[invoicecontroller::class,'edit']);
 Route::get('/invoice/hapus/{id}',[invoicecontroller::class,'hapus']);
 Route::get('/invoice/detail/{id}',[invoicecontroller::class,'detail']);
-Route::get('/invoice/pdf/{id}',[invoicecontroller::class,'pdf']);
-Route::post('/invoice/pdf/cetak',[invoicecontroller::class,'cetak']);
+Route::get('/invoice/pdf/{id}',[invoicecontroller::class,'cetak']);

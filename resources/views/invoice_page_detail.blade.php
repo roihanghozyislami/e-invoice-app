@@ -52,9 +52,10 @@
                     </a>
                     <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Invoice</h6>
-                            <a class="collapse-item font-weight-bold" href="{{url('/invoice-penagihan-page')}}">Invoice Penagihan</a>
-                            <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Invoice Penawaran</a>
+                            <h6 class="collapse-header">Menu</h6>
+                            <a class="collapse-item font-weight-bold" href="{{url('/invoice-page')}}">Invoice</a>
+                            <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penawaran</a>
+                            <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penagihan</a>
                         </div>
                     </div>
                 </li>
@@ -108,30 +109,26 @@
 	                    </ul>
 					</nav>
 					<!-- akhir topbar -->
-
+					@foreach($data_invoice_penagihan_detail as $data)
 					<div class="container-fluid">
 						<div class="card shadow mb-3">
 							<div class="card-header py-3">
-	                            <h4 class="m-0 font-weight-bold text-gray">Detail Data Invoice Penagihan</h4>
+	                            <h4 class="m-0 font-weight-bold text-gray">Detail Invoice : {{$data->nomor_invoice}}</h4>
 	                        </div>
 	                        <div class="card-body">
-	                        	@foreach($data_invoice_penagihan_detail as $data)
+	                        	
 	                        	<form>
 	                        		<div class="form-group">
 	                        			<div class="row mb-3">
-	                        				<div class="col-2">
-	                        					<label>ID Invoice</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->id_invoice}}" readonly>
+	                        				<div class="col-4">
+	                        					<label>Konsumen</label>
+	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->konsumen}}" readonly>
 	                        				</div>
 	                        				<div class="col-4">
-	                        					<label>Diterima Dari</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->diterima_dari}}" readonly>
-	                        				</div>
-	                        				<div class="col-3">
 	                        					<label>Angkut Dari</label>
 	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->angkut_dari}}" readonly>
 	                        				</div>
-	                        				<div class="col-3">
+	                        				<div class="col-4">
 	                        					<label>Tujuan</label>
 	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->tujuan}}" readonly>
 	                        				</div>
@@ -177,8 +174,7 @@
 	                        	@endforeach
 	                        </div>
 	                        <div class="card-footer">
-	                        	<a href="{{url('/invoice-penagihan-page')}}" class="btn btn-sm btn-primary">Halaman Data Invoice Penagihan</a>
-	                        	<a href="" class="btn btn-sm btn-primary">Export PDF</a>
+	                        	<a href="{{url('/invoice-page')}}" class="btn btn-sm btn-primary">Kembali Ke Daftar Invoice</a>
 	                        </div>
 						</div>
 					</div>
