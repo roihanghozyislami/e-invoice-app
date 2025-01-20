@@ -53,9 +53,23 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Menu</h6>
-                            <a class="collapse-item" href="{{url('/invoice-page')}}">Invoice</a>
+                            <a class="collapse-item" href="{{url('/transaksi-page')}}">Transaksi</a>
                             <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penawaran</a>
                             <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penagihan</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>Data Master</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Data Master</h6>
+                            <a class="collapse-item" href="{{url('/user')}}">User</a>
                         </div>
                     </div>
                 </li>

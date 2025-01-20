@@ -53,23 +53,6 @@
 			});	
 		}
 
-		function pdf(idnya) {
-			$.ajax({
-				type:"GET",
-				url:"{{url('/invoice-penagihan/tangkap')}}/"+idnya,
-				success:function(ambil){
-					$('#id').val(ambil.id_invoice);
-					$('#terima').val(ambil.diterima_dari);
-    				$('#angkut').val(ambil.angkut_dari);
-    				$('#dituju').val(ambil.tujuan);
-    				$('#pdf').modal('show');
-				},
-				error:function(){
-					alert('gagal proses');
-				}
-			});	
-		}
-
 		function hapus(idnya){
 			Swal.fire({
 				title: 'Yakin ?',
@@ -88,7 +71,7 @@
   						'Berhasil'
 					).then((result)=>{
 						if (result.value){
-							window.location.replace("{{url('/invoice-penagihan/hapus')}}/"+idnya);
+							window.location.replace("{{url('/invoice/hapus')}}/"+idnya);
 						}
 					})
 				}
@@ -121,7 +104,7 @@
                     <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Menu</h6>
-                            <a class="collapse-item font-weight-bold" href="{{url('/invoice-page')}}">Invoice</a>
+                            <a class="collapse-item font-weight-bold" href="{{url('/invoice-page')}}">Transaksi</a>
                             <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penawaran</a>
                             <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penagihan</a>
                         </div>
@@ -157,13 +140,11 @@
 						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 	                        <i class="fa fa-bars"></i>
 	                    </button>
-	                    <form
-	                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+	                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="{{url('/invoice-page')}}">
 	                        <div class="input-group">
-	                            <input type="text" class="form-control bg-light border-0 small" placeholder="Telusuri Berdasarkan ID Invoice..."
-	                                aria-label="Search" aria-describedby="basic-addon2" name="telusuri">
+	                            <input type="text" class="form-control bg-light border-0 small" placeholder="Telusuri Berdasarkan Nomor Invoice..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ old('cari', $keyword ?? '') }}">
 	                            <div class="input-group-append">
-	                                <button class="btn btn-primary" type="button">
+	                                <button class="btn btn-primary" type="submit">
 	                                    <i class="fas fa-search fa-sm"></i>
 	                                </button>
 	                            </div>
@@ -177,13 +158,11 @@
 	                            </a>
 	                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
 	                                aria-labelledby="searchDropdown">
-	                            	<form class="form-inline mr-auto w-100 navbar-search">
+	                            	<form class="form-inline mr-auto w-100 navbar-search" method="get" action="{{url('/invoice-page')}}">
 	                                    <div class="input-group">
-	                                        <input type="text" class="form-control bg-light border-0 small"
-	                                            placeholder="Telusuri Berdasarkan ID Invoice..." aria-label="Search"
-	                                            aria-describedby="basic-addon2" name="telusuri">
+	                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Telusuri Berdasarkan Nomor Invoice..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ old('cari', $keyword ?? '') }}">
 	                                        <div class="input-group-append">
-	                                            <button class="btn btn-primary" type="button">
+	                                            <button class="btn btn-primary" type="submit">
 	                                                <i class="fas fa-search fa-sm"></i>
 	                                            </button>
 	                                        </div>
@@ -212,24 +191,19 @@
 					<!-- akhir topbar -->
 
 					<div class="container-fluid">
-						@if(\Session::has('asuransi'))
+						@if(\Session::has('error'))
                             <div class="alert alert-danger">
-                                <div>{{Session::get('asuransi')}}</div>
+                                <div>{{Session::get('error')}}</div>
                             </div>
                         @endif 
-                        @if(\Session::has('tambah'))
+                        @if(\Session::has('success'))
                             <div class="alert alert-success">
-                                <div>{{Session::get('tambah')}}</div>
+                                <div>{{Session::get('success')}}</div>
                             </div>
                         @endif 
-                        @if(\Session::has('edit'))
-                            <div class="alert alert-success">
-                                <div>{{Session::get('edit')}}</div>
-                            </div>
-                        @endif  
 						<a href="javascript:" class="btn btn-primary btn-sm mb-4" onclick="$('#tambah').modal('show')">
 							<i class="fas fa-plus fa-sm"></i>
-							Buat Invoice Baru +
+							Buat Transaksi Baru +
 						</a>
 						<a href="{{url('/invoice-page')}}" class="btn btn-secondary btn-sm mb-4">
 							<i class="fas fa-redo fa-sm"></i>
@@ -237,54 +211,71 @@
 						</a>
 						<div class="card shadow mb-3">
 							<div class="card-header py-3">
-	                            <h4 class="m-0 font-weight-bold text-gray">Data Invoice</h4>
+	                            <h4 class="m-0 font-weight-bold text-gray">Data Transaksi</h4>
 	                        </div>
 	                        <div class="card-body">
 	                        	<div class="table-responsive">
 	                        		<table class="table table-borderless rounded shadow small">
 		                                <thead>
 		                                    <tr>
-		                                        <th>ID Invoice</th>
+		                                        <th>Nomor Transaksi</th>
 		                                        <th>Konsumen</th>
-		                                        <th>Angkut Dari</th>
-		                                        <th>Tujuan</th>
+		                                        <th>Total</th>
+		                                        <th>Tanggal</th>
+		                                        <th>Status</th>
 		                                        <th>Pengaturan</th>
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
 		                                   
-		                                    @foreach($data_invoice as $data)
+		                                    @forelse($data_transaksi as $data)
 		                                    <tr>
-		                                        <td>{{$data->nomor_invoice}}</td>
+		                                        <td>{{$data->nomor_transaksi}}</td>
 		                                        <td>{{$data->konsumen}}</td>
-		                                        <td>{{$data->angkut_dari}}</td>
-		                                        <td>{{$data->tujuan}}</td>
+		                                        <td>{{$data->total}}</td>
+		                                        <td>{{$data->tanggal}}</td>
 		                                        <td>
-		                                        	<a href="/invoice/detail/{{$data->id_invoice}}" class="btn btn-sm btn-primary">
+		                                        	<span class="badge text-white
+									                    @if($data->status === 'Lunas') bg-success
+									                    @else bg-danger
+									                    @endif">
+									                    {{ $data->status }}
+									                </span>
+		                                        </td>
+		                                        <td>
+		                                        	<a href="/invoice/detail/{{$data->nomor_transaksi}}" class="btn btn-sm btn-primary">
 		                                            	<i class="fas fa-edit fa-sm"></i>
 		                                            	Detail
 		                                            </a>
-		                                            <a href="javascript:" class="btn btn-sm btn-primary" onclick="edit({{$data->id_invoice}})">
+		                                            <a href="javascript:" class="btn btn-sm btn-primary" onclick="edit({{$data->nomor_transaksi}})">
 		                                            	<i class="fas fa-edit fa-sm"></i>
 		                                            	Edit
 		                                            </a>
-		                                            <a href="/invoice/pdf/{{$data->id_invoice}}" class="btn btn-sm btn-primary">
+		                                            <a href="/invoice/pdf/{{$data->nomor_transaksi}}" class="btn btn-sm btn-primary">
 		                                            	<i class="fas fa-edit fa-sm"></i>
-		                                            	Cetak PDF
+		                                            	Invoice
 		                                            </a>
-		                                            <a href="javascript:" class="btn btn-sm btn-danger" onclick="hapus({{$data->id_invoice}})">
+		                                            <a href="/invoice/pdf/{{$data->nomor_transaksi}}" class="btn btn-sm btn-primary">
+		                                            	<i class="fas fa-edit fa-sm"></i>
+		                                            	Kwitansi
+		                                            </a>
+		                                            <a href="javascript:" class="btn btn-sm btn-danger" onclick="hapus({{$data->nomor_transaksi}})">
 		                                            	<i class="fas fa-trash fa-sm"></i>
 		                                            	Hapus
 		                                            </a>
 		                                        </td>
 		                                    </tr>
+		                                    @empty
+		                                    <tr>
+                        						<td colspan="5" class="text-center">Tidak ada data ditemukan.</td>
+                    						</tr>
 		                                </tbody>
-		                                    @endforeach
+		                                    @endforelse
 		                            </table>
 	                        	</div>
 	                        </div>
 						</div>
-						{{ $data_invoice->links() }}
+						{{ $data_transaksi->links() }}
 					</div>
 				</div>
 				<!-- akhir isi inti -->
@@ -343,68 +334,34 @@
 			<div class="modal-dialog modal-xl modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h3>Formulir Pembuatan Invoice</h3>
+						<h3>Form Transaksi</h3>
 						<button class="close" type="button" data-dismiss="modal" aria-label="Close">x</button>
 					</div>
 					<div class="modal-body">
-						<form method="post" action="{{url('/invoice/tambah')}}">
+						<form method="post" action="{{url('/transaksi/tambah')}}">
 							{{ csrf_field() }}
 							<div class="form-group">
-								<label>No Invoice</label>
-								<input type="text" name="nomor_invoice" class="form-control" value="{{$nomorinvoice}}" readonly>
-							</div>
-							<div class="form-group">
 								<div class="row">
-									<div class="col-4">
+									<div class="col-6">
+										<label>No Transaksi</label>
+										<input type="text" name="nomor_transaksi" class="form-control" value="{{$nomor_transaksi}}" readonly>
+									</div>
+									<div class="col-6">
 										<label>Konsumen</label>
 										<input type="text" name="konsumen" class="form-control" placeholder="Masukan Nama Konsumen ..." required>	
 									</div>
-									<div class="col-4">
-										<label>Angkut Dari</label>
-										<input type="text" name="angkut_dari" class="form-control" placeholder="Masukan Lokasi Pengangkutan ..." required>	
-									</div>
-									<div class="col-4">
-										<label>Tujuan</label>
-										<input type="text" name="tujuan" class="form-control" placeholder="Masukan Tujuan Pengangkutan ..." required>	
-									</div>
 								</div>
 							</div>
-
+							<div id="kendaraan_details" class="form-group">
+						        <!-- Input detail kendaraan akan ditambahkan di sini -->
+						        
+						    </div>
 							<div class="form-group">
 								<div class="row">
-									<div class="col-4">
-										<label>Jenis/Merk Kendaraan</label>
-										<input type="text" name="kendaraan" class="form-control" placeholder="Masukan Jenis/Merk Kendaraan ..." required>	
+									<div class="col-6">
+										<label>Total Harga</label>
+										<input type="number" class="form-control" name="total_harga" id="total_harga" placeholder="Total Harga.." readonly>
 									</div>
-									<div class="col-4">
-										<label>No Rangka/Polisi</label>
-										<input type="text" name="rangka_polisi" class="form-control" placeholder="Masukan No Rangka/Polisi ..." required>	
-									</div>
-									<div class="col-4">
-										<label>No Mesin</label>
-										<input type="text" name="no_mesin" class="form-control" placeholder="Masukan No Mesin ..." required>	
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="row">
-									<div class="col-4">
-										<label>Warna</label>
-										<input type="text" name="warna" class="form-control" placeholder="Masukan Warna Kendaraan ..." required>	
-									</div>
-									<div class="col-4">
-										<label>Biaya</label>
-										<input type="text" name="biaya" class="form-control" placeholder="Masukan Biaya ..." required>	
-									</div>
-									<div class="col-4">
-										<label>Terbilang</label>
-										<input type="text" name="terbilang" class="form-control" placeholder="Masukan Terbilang ..." required>	
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="row">
 									<div class="col-6">
 										<label>Asuransi</label>
 										<select class="form-control" name="asuransi">
@@ -412,26 +369,27 @@
 											<option value="Ya">Ya</option>
 											<option value="Tidak">Tidak</option>
 										</select>
-									</div>
-									<div class="col-6">
-										<label>Tanggal</label>
-										<input type="date" name="tanggal" class="form-control" required>
+										<input type="text" name="status" value="Belum Bayar" hidden>
 									</div>
 								</div>
 							</div>
 
 							<div class="float-right">
-								<button type="reset" class="btn btn-primary">
+								<button type="reset" class="btn btn-sm btn-danger">
 									<i class="fas fa-redo fa-sm"></i>
 									Kosongkan Formulir
 								</button>
 								||
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-sm btn-primary">
 									<i class="fas fa-save fa-sm"></i>
 									Simpan
 								</button>
+								||
+								<button type="button" id="add_kendaraan" class="btn btn-sm btn-secondary">	Tambah Kendaraan
+								</button>
 							</div>
 						</form>
+						<p>Total : Rp <span id="total_biaya">0</span></p>
 					</div>
 				</div>
 			</div>
@@ -517,7 +475,7 @@
 							</div>
 
 							<div class="float-right">
-								<button type="reset" class="btn btn-primary">
+								<button type="reset" class="btn btn-danger">
 									<i class="fas fa-redo fa-sm"></i>
 									Kosongkan Formulir
 								</button>
@@ -532,47 +490,65 @@
 				</div>
 			</div>
 	 	</div>
-		
-		<!-- modal edit -->
-    	<div class="modal fade" id="pdf">
-			<div class="modal-dialog modal-md modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3>Formulir Cetak PDF</h3>
-						<button class="close" type="button" data-dismiss="modal" aria-label="Close">x</button>
-					</div>
-					<div class="modal-body">
-						<form method="post" action="{{url('/invoice/pdf/cetak')}}">
-							{{ csrf_field() }}
-							Yakin ingin cetak PDF untuk Invoice dengan data berikut ?
-							<div class="form-group">
-								<label>ID Invoice</label>
-								<input type="text" name="id_invoice" class="form-control" id="id" required readonly>	
-							</div>
-							<div class="form-group">
-								<label>Diterima Dari</label>
-								<input type="text" name="terima_dari" class="form-control" id="terima" required readonly>
-							</div>
-							<div class="form-group">
-								<label>Angkut Dari</label>
-								<input type="text" name="angkut_dari" class="form-control" id="angkut" required readonly>	
-							</div>
-							<div class="form-group">
-								<label>Tujuan</label>
-								<input type="text" name="tujuan" class="form-control" id="dituju" required readonly>
-							</div>
-							<div class="float-right">
-								<button type="submit" class="btn btn-primary">
-									<i class="fas fa-save fa-sm"></i>
-									Cetak PDF
-								</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-	 	</div>
 	 	
+	 	<script type="text/javascript">
+	 		let totalBiaya = 0;
+
+	 		document.getElementById('add_kendaraan').addEventListener('click', function() {
+			    let kendaraanDetailsDiv = document.getElementById('kendaraan_details');
+			    let kendaraanCount = kendaraanDetailsDiv.children.length + 1;
+
+			    let newKendaraanForm = `
+			    	<div class="kendaraan_form row mb-3">
+			    		<div class="col-3">
+				    		<label>Dari</label>
+				            <input type="text" name="kendaraan[${kendaraanCount}][dari]" class="form-control" placeholder="Dari Mana.." required>
+				        </div>
+				        <div class="col-3">
+			    			<label>Tujuan</label>
+				    		<input type="text" name="kendaraan[${kendaraanCount}][tujuan]" class="form-control" placeholder="Kemana.." required>
+				        </div>
+			    		<div class="col-2">
+				    		<label>Kendaraan</label>
+				            <input type="text" name="kendaraan[${kendaraanCount}][kendaraan]" class="form-control" placeholder="Masukan Kendaraan.." required>
+				        </div>
+				        <div class="col-2">
+			    			<label>No Polisi</label>
+				    		<input type="text" name="kendaraan[${kendaraanCount}][no_polisi]" class="form-control" placeholder="Masukan No Polisi.." required>
+				        </div>
+				        <div class="col-2">
+			    			<label>Biaya</label>
+				    		<input type="number" name="kendaraan[${kendaraanCount}][biaya]" class="form-control biaya_input" placeholder="Masukan Biaya.." required>
+				        </div>
+			    	</div>
+			    `;
+			    kendaraanDetailsDiv.insertAdjacentHTML('beforeend', newKendaraanForm);
+
+			    // Tambahkan event listener untuk menghitung biaya ketika input berubah
+			    kendaraanDetailsDiv.querySelectorAll('.biaya_input').forEach(input => {
+			        input.addEventListener('input', updateTotalBiaya);
+			    });
+			});
+
+
+			// Fungsi untuk menghitung total biaya
+			function updateTotalBiaya() {
+			    totalBiaya = 0;
+
+			    document.querySelectorAll('.biaya_input').forEach(input => {
+			        const biaya = parseFloat(input.value) || 0;
+			        totalBiaya += biaya;
+			    });
+
+			    // Perbarui tampilan total biaya
+			    document.getElementById('total_biaya').textContent = totalBiaya.toFixed(2);
+
+			    // Perbarui nilai total_harga di form
+			    document.getElementById('total_harga').value = totalBiaya.toFixed(2);
+			}
+
+	 	</script>
+
 	 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	    <script type="text/javascript" src="/vendor/jquery/jquery.min.js"></script>
 	    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

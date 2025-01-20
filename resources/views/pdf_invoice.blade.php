@@ -125,6 +125,7 @@
             <div><strong>Subtotal:</strong>-</div>
             <div><strong>Pajak:</strong>-</div>
             <div><strong>Total:</strong> <span style="font-size: 18px;">{{$data->biaya}}</span></div>
+            <div><strong>Terbilang:</strong> <span style="font-size: 18px;">{{$data->terbilang}}</span></div>
         </div>
 
         <div class="signature">
