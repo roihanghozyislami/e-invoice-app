@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Invoice Penagihan Detail | E-Invoice App</title>
+		<title>Transaksi Detail | E-Invoice App</title>
 		
 	    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
 	    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -53,7 +53,7 @@
                     <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Menu</h6>
-                            <a class="collapse-item font-weight-bold" href="{{url('/invoice-page')}}">Invoice</a>
+                            <a class="collapse-item font-weight-bold" href="{{url('/invoice-page')}}">Transaksi</a>
                             <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penawaran</a>
                             <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penagihan</a>
                         </div>
@@ -109,72 +109,86 @@
 	                    </ul>
 					</nav>
 					<!-- akhir topbar -->
-					@foreach($data_invoice_penagihan_detail as $data)
+					
 					<div class="container-fluid">
 						<div class="card shadow mb-3">
 							<div class="card-header py-3">
-	                            <h4 class="m-0 font-weight-bold text-gray">Detail Invoice : {{$data->nomor_invoice}}</h4>
+								<div class="float-left">
+									<h4 class="m-0 font-weight-bold text-gray">Detail Transaksi</h4>
+								</div>
+	                            <div class="float-right">
+	                            	<a href="{{url('/transaksi-page')}}" class="btn btn-sm btn-primary">
+	                        			Kembali
+	                        		</a>
+	                        		<a href="/invoice/pdf/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
+                                    	<i class="fas fa-edit fa-sm"></i>
+                                    	Buat Invoice
+                                    </a>
+                                    <a href="/invoice/pdf/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
+                                    	<i class="fas fa-edit fa-sm"></i>
+                                    	Buat Kwitansi
+                                    </a>
+                                    <a href="javascript:" class="btn btn-sm btn-info" onclick="edit({{$transaksi->id_transaksi}})">
+                                    	<i class="fas fa-edit fa-sm"></i>
+                                    	Edit
+                                    </a>
+                                    <a href="/invoice/pdf/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-danger">
+                                    	<i class="fas fa-edit fa-sm"></i>
+                                    	Hapus Transaksi
+                                    </a>
+	                            </div>
 	                        </div>
 	                        <div class="card-body">
-	                        	
-	                        	<form>
-	                        		<div class="form-group">
-	                        			<div class="row mb-3">
-	                        				<div class="col-4">
-	                        					<label>Konsumen</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->konsumen}}" readonly>
-	                        				</div>
-	                        				<div class="col-4">
-	                        					<label>Angkut Dari</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->angkut_dari}}" readonly>
-	                        				</div>
-	                        				<div class="col-4">
-	                        					<label>Tujuan</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->tujuan}}" readonly>
-	                        				</div>
-	                        			</div>
-	                        			<div class="row mb-3">
-	                        				<div class="col-3">
-	                        					<label>Merk Kendaraan</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->jenis_kendaraan_merk}}" readonly>
-	                        				</div>
-	                        				<div class="col-3">
-	                        					<label>No Rangka/Polisi</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->no_rangka_polisi}}" readonly>
-	                        				</div>
-	                        				<div class="col-3">
-	                        					<label>No Mesin</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->no_mesin}}" readonly>
-	                        				</div>
-	                        				<div class="col-3">
-	                        					<label>Warna</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->warna}}" readonly>
-	                        				</div>
-	                        			</div>
-	                        			<div class="row mb-3">
-	                        				<div class="col-3">
-	                        					<label>Biaya</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->biaya}}" readonly>
-	                        				</div>
-	                        				<div class="col-3">
-	                        					<label>Terbilang</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->terbilang}}" readonly>
-	                        				</div>
-	                        				<div class="col-3">
-	                        					<label>Asuransi</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->asuransi}}" readonly>
-	                        				</div>
-	                        				<div class="col-3">
-	                        					<label>Tanggal</label>
-	                        					<input type="text" name="id_invoice" class="form-control" value="{{$data->tanggal}}" readonly>
-	                        				</div>
-	                        			</div>
-	                        		</div>
-	                        	</form>
-	                        	@endforeach
+	                        	<div class="form-group">
+	                        		<strong>Nomor Transaksi :</strong> {{ $transaksi->nomor_transaksi }}<br>
+							        <strong>Konsumen :</strong> {{ $transaksi->konsumen }}<br>
+							        <strong>Tanggal :</strong> {{ $transaksi->tanggal }}<br>
+							        <strong>Asuransi :</strong> {{ $transaksi->asuransi }}<br>
+							        <strong>Status :</strong>
+							        <span class="badge text-white @if($transaksi->status === 'Lunas') bg-success @else bg-danger @endif">
+				                    	{{ $transaksi->status }}
+					                </span>
+							        <br>
+							        <strong>Total Biaya :</strong> Rp {{ number_format($transaksi->total, 0, ',', '.') }}<br>
+	                        	</div>
+	                        	<hr>
+	                        	<div class="form-group table-responsive">
+	                        		<h5>Detail Kendaraan</h5>
+								    <table class="table table-bordered small">
+								        <thead>
+								            <tr>
+								                <th>No</th>
+								                <th>Dari</th>
+								                <th>Tujuan</th>
+								                <th>Kendaraan</th>
+								                <th>No Polisi</th>
+								                <th>Biaya</th>
+								            </tr>
+								        </thead>
+								        <tbody>
+								            @forelse ($transaksi_detail as $index => $detail)
+								            <tr>
+								                <td>{{ $index + 1 }}</td>
+								                <td>{{ $detail->dari }}</td>
+								                <td>{{ $detail->tujuan }}</td>
+								                <td>{{ $detail->kendaraan }}</td>
+								                <td>{{ $detail->no_polisi }}</td>
+								                <td> Rp {{ number_format($detail->biaya, 0, ',', '.') }}</td>
+								            </tr>
+								            @empty
+								            <tr>
+								                <td colspan="6" class="text-center">Tidak ada detail transaksi</td>
+								            </tr>
+								            @endforelse
+								        </tbody>
+								    </table>
+
+	                        	</div>
 	                        </div>
 	                        <div class="card-footer">
-	                        	<a href="{{url('/invoice-page')}}" class="btn btn-sm btn-primary">Kembali Ke Daftar Invoice</a>
+	                        	<a href="{{url('/transaksi-page')}}" class="btn btn-sm btn-primary">
+	                        		Kembali
+	                        	</a>
 	                        </div>
 						</div>
 					</div>

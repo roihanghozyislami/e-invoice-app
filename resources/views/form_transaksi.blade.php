@@ -71,7 +71,7 @@
   						'Berhasil'
 					).then((result)=>{
 						if (result.value){
-							window.location.replace("{{url('/transaksi/hapus')}}/"+idnya);
+							window.location.replace("{{url('/invoice/hapus')}}/"+idnya);
 						}
 					})
 				}
@@ -191,75 +191,87 @@
 					<!-- akhir topbar -->
 
 					<div class="container-fluid">
-						@if(\Session::has('error'))
-                            <div class="alert alert-danger">
-                                <div>{{Session::get('error')}}</div>
-                            </div>
-                        @endif 
-                        @if(\Session::has('success'))
-                            <div class="alert alert-success">
-                                <div>{{Session::get('success')}}</div>
-                            </div>
-                        @endif 
-						<a href="{{url('/transaksi-form')}}" class="btn btn-primary btn-sm mb-4">
-							<i class="fas fa-plus fa-sm"></i>
-							Buat Transaksi Baru +
-						</a>
-						<a href="{{url('/invoice-page')}}" class="btn btn-secondary btn-sm mb-4">
+						
+						<a href="{{url('/transaksi-page')}}" class="btn btn-secondary btn-sm mb-4">
 							<i class="fas fa-redo fa-sm"></i>
-							Refresh
+							Kembali
 						</a>
 						<div class="card shadow mb-3">
 							<div class="card-header py-3">
-	                            <h4 class="m-0 font-weight-bold text-gray">Data Transaksi</h4>
+	                            <h4 class="m-0 font-weight-bold text-gray">Form Pembuatan Transaksi</h4>
 	                        </div>
 	                        <div class="card-body">
-	                        	<div class="table-responsive">
-	                        		<table class="table table-borderless rounded shadow small">
-		                                <thead>
-		                                    <tr>
-		                                        <th>Nomor Transaksi</th>
-		                                        <th>Konsumen</th>
-		                                        <th>Total</th>
-		                                        <th>Tanggal</th>
-		                                        <th>Status</th>
-		                                        <th>Pengaturan</th>
-		                                    </tr>
-		                                </thead>
-		                                <tbody>
-		                                   
-		                                    @forelse($data_transaksi as $data)
-		                                    <tr>
-		                                        <td>{{$data->nomor_transaksi}}</td>
-		                                        <td>{{$data->konsumen}}</td>
-		                                        <td>{{$data->total}}</td>
-		                                        <td>{{$data->tanggal}}</td>
-		                                        <td>
-		                                        	<span class="badge text-white
-									                    @if($data->status === 'Lunas') bg-success
-									                    @else bg-danger
-									                    @endif">
-									                    {{ $data->status }}
-									                </span>
-		                                        </td>
-		                                        <td>
-		                                        	<a href="/transaksi-detail/{{$data->id_transaksi}}" class="btn btn-sm btn-primary">
-		                                            	<i class="fas fa-edit fa-sm"></i>
-		                                            	Detail
-		                                            </a>
-		                                        </td>
-		                                    </tr>
-		                                    @empty
-		                                    <tr>
-                        						<td colspan="5" class="text-center">Tidak ada data ditemukan.</td>
-                    						</tr>
-		                                </tbody>
-		                                    @endforelse
-		                            </table>
-	                        	</div>
+	                        	<form action="{{url('/transaksi/add')}}" method="POST">
+							        @csrf
+							        <div class="form-group">
+							        	<div class="row">
+							        		<div class="col-4">
+							        			<label>Nomor Transaksi</label>
+							            		<input type="text" class="form-control" id="nomor_transaksi" name="nomor_transaksi" value="{{$nomor_transaksi}}" required readonly>
+							        		</div>
+							        		<div class="col-4">
+							        			<label>Konsumen</label>
+							            		<input type="text" class="form-control" id="konsumen" name="konsumen" placeholder="Masukan Nama Konsumen..." required>
+							        		</div>
+							        		<div class="col-4">
+							        			<label>Tanggal</label>
+							            		<input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Silahkan Pilih Tanggal ..." required>
+							        		</div>
+							        	</div>
+							        </div>
+							        <h4>Detail Kendaraan</h4>
+							        <div class="form-group table-responsive">
+							        	<table class="table small rounded borderless" id="detail-container">
+								            <thead>
+								                <tr>
+								                    <th>Dari</th>
+								                    <th>Tujuan</th>
+								                    <th>Kendaraan</th>
+								                    <th>No Polisi</th>
+								                    <th>Biaya</th>
+								                    <th>Aksi</th>
+								                </tr>
+								            </thead>
+								            <tbody>
+								                <tr>
+								                    <td><input type="text" class="form-control" name="details[0][dari]" placeholder="Ditarik darimana..." required></td>
+								                    <td><input type="text" class="form-control" name="details[0][tujuan]" placeholder="Ditarik kemana..." required></td>
+								                    <td><input type="text" class="form-control" name="details[0][kendaraan]" placeholder="Masukan Nama Kendaraan" required></td>
+								                    <td><input type="text" class="form-control" name="details[0][no_polisi]" placeholder="Masukan No Polisi..." required></td>
+								                    <td><input type="number" name="details[0][biaya]" class="biaya-input form-control" placeholder="Masukan Biayanya..." required></td>
+								                    <td><button type="button" class="btn btn-sm btn-danger delete-row">Hapus</button></td>
+								                </tr>
+								            </tbody>
+								        </table>
+							        </div>
+							        <div class="form-group">
+							        	<button type="button" id="add-row" class="btn btn-sm btn-primary">
+								        	Tambah Baris
+								        </button>
+							        </div>
+							        <div class="form-group">
+							        	<div class="row">
+							        		<div class="col-6">
+							        			<label>Total Biaya</label>
+							           			<input type="text" class="form-control" id="total-biaya" readonly>
+							        		</div>
+							        		<div class="col-6">
+							        			<label>Asuransi</label>
+							        			<select class="form-control" name="asuransi">
+													<option value="0">--Silahkan Pilih Asuransi--</option>
+													<option value="Ya">Ya</option>
+													<option value="Tidak">Tidak</option>
+												</select>
+												<input type="text" name="status" value="Belum Bayar" hidden>
+							        		</div>
+							        	</div>
+							        </div>
+							        <div class="card-footer">
+							        	<button type="submit" class="btn btn-sm btn-success">Simpan</button>
+							        </div>
+							    </form>
 	                        </div>
 						</div>
-						{{ $data_transaksi->links() }}
 					</div>
 				</div>
 				<!-- akhir isi inti -->
@@ -311,6 +323,46 @@
 	            </div>
 	        </div>
     	</div>
+
+
+    	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+		    const detailContainer = document.querySelector('#detail-container tbody');
+		    const totalBiayaInput = document.querySelector('#total-biaya');
+
+		    function updateTotalBiaya() {
+		        let total = 0;
+		        document.querySelectorAll('.biaya-input').forEach(input => {
+		            total += parseFloat(input.value) || 0;
+		        });
+		        totalBiayaInput.value = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(total);
+		    }
+
+		    document.querySelector('#add-row').addEventListener('click', () => {
+		        const rowCount = detailContainer.querySelectorAll('tr').length;
+		        const row = document.createElement('tr');
+		        row.innerHTML = `
+		            <td><input type="text" class="form-control" name="details[${rowCount}][dari]" required></td>
+		            <td><input type="text" class="form-control" name="details[${rowCount}][tujuan]" required></td>
+		            <td><input type="text" class="form-control" name="details[${rowCount}][kendaraan]" required></td>
+		            <td><input type="text" class="form-control" name="details[${rowCount}][no_polisi]" required></td>
+		            <td><input type="number" name="details[${rowCount}][biaya]" class="biaya-input form-control" required></td>
+		            <td><button type="button" class="btn btn-sm btn-danger delete-row">Hapus</button></td>
+		        `;
+		        detailContainer.appendChild(row);
+		        row.querySelector('.delete-row').addEventListener('click', () => {
+		            row.remove();
+		            updateTotalBiaya();
+		        });
+		        row.querySelector('.biaya-input').addEventListener('input', updateTotalBiaya);
+		    });
+
+		    document.querySelectorAll('.biaya-input').forEach(input => {
+		        input.addEventListener('input', updateTotalBiaya);
+		    });
+		});
+		</script>
+
 
 	 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	    <script type="text/javascript" src="/vendor/jquery/jquery.min.js"></script>
