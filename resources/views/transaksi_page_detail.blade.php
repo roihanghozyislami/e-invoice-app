@@ -118,22 +118,26 @@
 								</div>
 	                            <div class="float-right">
 	                            	<a href="{{url('/transaksi-page')}}" class="btn btn-sm btn-primary">
+	                            		<i class="fas fa-backward fa-sm"></i>
 	                        			Kembali
 	                        		</a>
-	                        		<a href="/invoice/pdf/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
-                                    	<i class="fas fa-edit fa-sm"></i>
-                                    	Buat Invoice
-                                    </a>
-                                    <a href="/invoice/pdf/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
-                                    	<i class="fas fa-edit fa-sm"></i>
-                                    	Buat Kwitansi
-                                    </a>
-                                    <a href="javascript:" class="btn btn-sm btn-info" onclick="edit({{$transaksi->id_transaksi}})">
-                                    	<i class="fas fa-edit fa-sm"></i>
-                                    	Edit
-                                    </a>
-                                    <a href="/invoice/pdf/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-danger">
-                                    	<i class="fas fa-edit fa-sm"></i>
+                                    @if($transaksi->status === 'Belum Bayar')
+	                                    <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#telahbayar">
+	                                    	<i class="fas fa-check fa-sm"></i>
+	                                    	Telah Dibayar
+	                                    </a>
+	                                    <a href="/transaksi/invoice/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
+                                    		<i class="fas fa-print fa-sm"></i>
+                                    		Buat Invoice
+                                    	</a>
+	                                @elseif($transaksi->status === 'Telah Lunas')
+		                                <a href="/transaksi/kwitansi/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
+	                                    	<i class="fas fa-print fa-sm"></i>
+	                                    	Buat Kwitansi
+	                                    </a>
+                                    @endif
+                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapus">
+                                    	<i class="fas fa-trash fa-sm"></i>
                                     	Hapus Transaksi
                                     </a>
 	                            </div>
@@ -145,7 +149,7 @@
 							        <strong>Tanggal :</strong> {{ $transaksi->tanggal }}<br>
 							        <strong>Asuransi :</strong> {{ $transaksi->asuransi }}<br>
 							        <strong>Status :</strong>
-							        <span class="badge text-white @if($transaksi->status === 'Lunas') bg-success @else bg-danger @endif">
+							        <span class="badge text-white @if($transaksi->status === 'Telah Lunas') bg-success @else bg-danger @endif">
 				                    	{{ $transaksi->status }}
 					                </span>
 							        <br>
@@ -230,11 +234,10 @@
 	                	Jika Yakin, Silahkan Pilih Keluar
 	                </div>
 	                <div class="modal-footer">
-	                    <button class="btn btn-primary" type="button" data-dismiss="modal">
-	                    	<i class="fas fa-stop-circle fa-sm"></i>
-	                    	Batal
+	                    <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">
+	                    	X Batal
 	                    </button>
-	                    <a class="btn btn-danger" href="{{url('/logout')}}">
+	                    <a class="btn btn-sm btn-danger" href="{{url('/logout')}}">
 	                    	<i class="fas fa-sign-out-alt fa-sm"></i>
 	                    	Keluar
 	                    </a>
@@ -243,6 +246,63 @@
 	        </div>
     	</div>
 	 	
+
+	 	<div class="modal fade" id="telahbayar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+	        <div class="modal-dialog modal-dialog-centered" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title" id="exampleModalLabel">
+	                    	Yakin transaksi telah dibayar lunas ?
+	                    </h5>
+	                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">×</span>
+	                    </button>
+	                </div>
+	                <div class="modal-body">
+	                	Jika yakin, Silahkan pilih ya
+	                </div>
+	                <div class="modal-footer">
+	                    <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">
+	                    	X Batal
+	                    </button>
+	                    <a class="btn btn-sm btn-success" href="/transaksi/lunas/{{$transaksi->id_transaksi}}">
+	                    	<i class="fas fa-check fa-sm"></i>
+	                    	Ya
+	                    </a>
+	                </div>
+	            </div>
+	        </div>
+    	</div>
+
+    	<div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+	        <div class="modal-dialog modal-dialog-centered" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title" id="exampleModalLabel">
+	                    	Yakin transaksi ingin dihapus ?
+	                    </h5>
+	                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">×</span>
+	                    </button>
+	                </div>
+	                <div class="modal-body">
+	                	Jika yakin, Silahkan pilih ya
+	                </div>
+	                <div class="modal-footer">
+	                    <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">
+	                    	X Batal
+	                    </button>
+	                    <a class="btn btn-sm btn-danger" href="/transaksi/delete/{{$transaksi->id_transaksi}}">
+	                    	<i class="fas fa-check fa-sm"></i>
+	                    	Ya
+	                    </a>
+	                </div>
+	            </div>
+	        </div>
+    	</div>
+
 	 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	    <script type="text/javascript" src="/vendor/jquery/jquery.min.js"></script>
 	    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -21,7 +21,7 @@ class transaksicontroller extends Controller
             ->when($keyword, function ($query, $keyword) {
             return $query->where('nomor_transaksi', 'like', "%{$keyword}%");
         })
-            ->orderBy('nomor_transaksi', 'desc')
+            ->orderBy('id_transaksi', 'desc')
             ->paginate(10); // Tambahkan paginasi
 
         return view('transaksi_page',['data_transaksi' => $data_transaksi, 'keyword' => $keyword]);
@@ -109,5 +109,35 @@ class transaksicontroller extends Controller
         $transaksi_detail = DB::table('transaksi_detail')->where('id_transaksi', $id)->get();
 
         return view('transaksi_page_detail', compact('transaksi', 'transaksi_detail'));
+    }
+
+    public function paid($id){
+        DB::table('transaksi')->where('id_transaksi',$id)->update([
+                'status' => 'Telah Lunas'
+            ]);
+            return redirect()->back()->with('success','Transaksi telah lunas...');
+    }
+
+    public function delete($id){
+        DB::table('transaksi')->where('id_transaksi',$id)->delete();
+        DB::table('transaksi_detail')->where('id_transaksi',$id)->delete();
+
+        return redirect('/transaksi-page')->with('success','Transaksi telah dihapus...');
+    }
+
+    public function invoice($id){
+        $transaksi = DB::table('transaksi')->where('id_transaksi',$id)->first();
+        $transaksi_detail = DB::table('transaksi_detail')->where('id_transaksi', $id)->get();
+ 
+        $pdf = PDF::loadview('invoice', compact('transaksi', 'transaksi_detail'));
+        return $pdf->stream('Invoice.pdf');
+    }
+
+    public function kwitansi($id){
+        $transaksi = DB::table('transaksi')->where('id_transaksi',$id)->first();
+        $transaksi_detail = DB::table('transaksi_detail')->where('id_transaksi', $id)->get();
+ 
+        $pdf = PDF::loadview('kwitansi', compact('transaksi', 'transaksi_detail'));
+        return $pdf->stream('Kwitansi-$id.pdf');
     }
 }

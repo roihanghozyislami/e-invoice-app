@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
+    <title>Kwitansi</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -79,7 +79,6 @@
     </style>
 </head>
 <body>
-    @foreach($data_invoice as $data)
     <div class="invoice-container">
         <div class="invoice-header">
             <div class="company-info">
@@ -88,56 +87,60 @@
                 Telepon: 085217716633<br>
                 Email: asokajayaperkasa@gmail.com
             </div>
-            <h1>INVOICE</h1>
+            <h1>KWITANSI</h1>
         </div>
 
         <div class="invoice-details">
-            <div><strong>Nomor Invoice:</strong> {{$data->nomor_invoice}}</div>
-            <div><strong>Tanggal:</strong> {{$data->tanggal}}</div>
-            <div><strong>Jatuh Tempo:</strong> Segera</div>
-            <div><strong>Kepada:</strong> {{$data->konsumen}}</div>
+            <div><strong>Nomor Invoice:</strong> {{$transaksi->nomor_transaksi}}</div>
+            <div><strong>Kepada:</strong> {{$transaksi->konsumen}}</div>
+            <div><strong>Tanggal:</strong> {{$transaksi->tanggal}}</div>
+            <div><strong>Asuransi:</strong> {{$transaksi->asuransi}}</div>
+            <div><strong>Status :</strong> {{$transaksi->status}}</div>
         </div>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>Dari-Tujuan</th>
+                    <th>No</th>
+                    <th>Dari</th>
+                    <th>Tujuan</th>
                     <th>Kendaraan</th>
                     <th>No Polisi</th>
-                    <th>Warna</th>
                     <th>Biaya</th>
-                    <th>Asuransi</th>
                 </tr>
             </thead>
             <tbody>
+                @forelse ($transaksi_detail as $index => $detail)
                 <tr>
-                    <td>{{$data->angkut_dari}} - {{$data->tujuan}}</td>
-                    <td>{{$data->jenis_kendaraan_merk}}</td>
-                    <td>{{$data->no_rangka_polisi}}</td>
-                    <td>{{$data->warna}}</td>
-                    <td>{{$data->biaya}}</td>
-                    <td>{{$data->asuransi}}</td>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $detail->dari }}</td>
+                    <td>{{ $detail->tujuan }}</td>
+                    <td>{{ $detail->kendaraan }}</td>
+                    <td>{{ $detail->no_polisi }}</td>
+                    <td> Rp {{ number_format($detail->biaya, 0, ',', '.') }}</td>
                 </tr>
+                @empty
+                <tr>
+                    <td colspan="6" class="text-center">Tidak ada data</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
 
         <div class="total">
-            <div><strong>Subtotal:</strong>-</div>
-            <div><strong>Pajak:</strong>-</div>
-            <div><strong>Total:</strong> <span style="font-size: 18px;">{{$data->biaya}}</span></div>
-            <div><strong>Terbilang:</strong> <span style="font-size: 18px;">{{$data->terbilang}}</span></div>
+            <div><strong>Total:</strong> <span style="font-size: 18px;">Rp {{ number_format($transaksi->total, 0, ',', '.') }}</span></div>
         </div>
 
         <div class="signature">
             <p>Hormat Kami,</p>
             <img src="{{ ('img/ttd.jpg') }}">
+            <p>PT Asoka Jaya Perkasa</p>
         </div>
 
         <div class="footer">
             Terima kasih atas bisnis Anda!<br>
-            Mohon transfer pembayaran ke rekening berikut: Bank BCA - 123456789 - Atas Nama Perusahaan
+            Kwitansi ini adalah bukti transaksi yang sah
         </div>
     </div>
-    @endforeach
 </body>
 </html>

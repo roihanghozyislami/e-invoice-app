@@ -140,7 +140,7 @@
 						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 	                        <i class="fa fa-bars"></i>
 	                    </button>
-	                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="{{url('/invoice-page')}}">
+	                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="{{url('/transaksi-page')}}">
 	                        <div class="input-group">
 	                            <input type="text" class="form-control bg-light border-0 small" placeholder="Telusuri Berdasarkan Nomor Invoice..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ old('cari', $keyword ?? '') }}">
 	                            <div class="input-group-append">
@@ -158,7 +158,7 @@
 	                            </a>
 	                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
 	                                aria-labelledby="searchDropdown">
-	                            	<form class="form-inline mr-auto w-100 navbar-search" method="get" action="{{url('/invoice-page')}}">
+	                            	<form class="form-inline mr-auto w-100 navbar-search" method="get" action="{{url('/transaksi-page')}}">
 	                                    <div class="input-group">
 	                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Telusuri Berdasarkan Nomor Invoice..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ old('cari', $keyword ?? '') }}">
 	                                        <div class="input-group-append">
@@ -205,7 +205,7 @@
 							<i class="fas fa-plus fa-sm"></i>
 							Buat Transaksi Baru +
 						</a>
-						<a href="{{url('/invoice-page')}}" class="btn btn-secondary btn-sm mb-4">
+						<a href="{{url('/transaksi-page')}}" class="btn btn-secondary btn-sm mb-4">
 							<i class="fas fa-redo fa-sm"></i>
 							Refresh
 						</a>
@@ -232,11 +232,11 @@
 		                                    <tr>
 		                                        <td>{{$data->nomor_transaksi}}</td>
 		                                        <td>{{$data->konsumen}}</td>
-		                                        <td>{{$data->total}}</td>
+		                                        <td>Rp {{ number_format($data->total, 0, ',', '.') }}</td>
 		                                        <td>{{$data->tanggal}}</td>
 		                                        <td>
 		                                        	<span class="badge text-white
-									                    @if($data->status === 'Lunas') bg-success
+									                    @if($data->status === 'Telah Lunas') bg-success
 									                    @else bg-danger
 									                    @endif">
 									                    {{ $data->status }}

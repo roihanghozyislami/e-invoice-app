@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2025 at 01:32 PM
+-- Generation Time: Jan 30, 2025 at 07:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -112,7 +112,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('9OY6ellfIaEAcw9aoAa5yzfbD4Na9g5pO4qngN99', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2xvZ2luLXBhZ2UiO31zOjY6Il90b2tlbiI7czo0MDoiNUZEWXJoaW9jSDBHbHdMMnhBdUpZa1VWejROZmlUZGtkY1dId0htWiI7fQ==', 1737635519);
+('bI0vHiHglrO6mQqToBZeDyTQ7opQjlxzVnTUbUxp', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiWXU2SlUzVUFVZE9MRGdFZm00blIyZk9NQ0JyZWFmZ29VMkF3WGFjOSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90cmFuc2Frc2ktcGFnZSI7fXM6ODoicGFzc3dvcmQiO3M6NDoid2F3YSI7czo4OiJ1c2VybmFtZSI7czo0OiJ3YXdhIjtzOjQ6Im5hbWEiO3M6Mjg6Ik5hc3l3YSBBdXJlbGxpYSBFbHlzaWEgUHV0cmkiO3M6NToibG9naW4iO2I6MTt9', 1738219555);
 
 -- --------------------------------------------------------
 
@@ -135,10 +135,21 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `nomor_transaksi`, `konsumen`, `total`, `asuransi`, `tanggal`, `status`) VALUES
-(7, 'AJP/20250123/0001', 'PT Anugerah Sejati', 400000.00, 'Ya', '2025-01-23', 'Belum Bayar'),
-(8, 'AJP/20250123/0002', 'PT Budi Jaya', 2100000.00, 'Tidak', '2025-01-17', 'Belum Bayar'),
-(9, 'AJP/20250123/0003', 'CV Makmur', 1100000.00, 'Ya', '2025-01-06', 'Belum Bayar'),
-(10, 'AJP/20250123/0004', 'PT Santos Jaya', 1500000.00, 'Ya', '2025-01-20', 'Belum Bayar');
+(12, 'AJP/20250115/0001', 'Budi Santoso', 1200000.00, 'Ya', '2025-01-15', 'Telah Lunas'),
+(13, 'AJP/20250116/0002', 'Siti Aisyah', 1400000.00, 'Tidak', '2025-01-16', 'Belum Bayar'),
+(14, 'AJP/20250117/0003', 'Andi Wijaya', 1600000.00, 'Ya', '2025-01-17', 'Telah Lunas'),
+(15, 'AJP/20250118/0004', 'Dewi Lestari', 1300000.00, 'Tidak', '2025-01-18', 'Belum Bayar'),
+(16, 'AJP/20250119/0005', 'Rizky Maulana', 1250000.00, 'Ya', '2025-01-19', 'Telah Lunas'),
+(17, 'AJP/20250120/0006', 'Nina Hartati', 1450000.00, 'Tidak', '2025-01-20', 'Belum Bayar'),
+(18, 'AJP/20250121/0007', 'Fajar Pratama', 1750000.00, 'Ya', '2025-01-21', 'Telah Lunas'),
+(19, 'AJP/20250122/0008', 'Rahmat Hidayat', 1350000.00, 'Tidak', '2025-01-22', 'Belum Bayar'),
+(20, 'AJP/20250123/0009', 'Lina Kusuma', 1500000.00, 'Ya', '2025-01-23', 'Telah Lunas'),
+(21, 'AJP/20250124/0010', 'Arief Kurniawan', 1550000.00, 'Tidak', '2025-01-24', 'Belum Bayar'),
+(22, 'AJP/20250125/0011', 'Dina Permata', 1400000.00, 'Ya', '2025-01-25', 'Telah Lunas'),
+(23, 'AJP/20250126/0012', 'Joko Susilo', 1600000.00, 'Tidak', '2025-01-26', 'Belum Bayar'),
+(24, 'AJP/20250127/0013', 'Tina Wijaya', 1650000.00, 'Ya', '2025-01-27', 'Telah Lunas'),
+(25, 'AJP/20250128/0014', 'Herman Saputra', 1300000.00, 'Tidak', '2025-01-28', 'Belum Bayar'),
+(26, 'AJP/20250129/0015', 'Lisa Andriani', 1700000.00, 'Ya', '2025-01-29', 'Telah Lunas');
 
 -- --------------------------------------------------------
 
@@ -161,17 +172,36 @@ CREATE TABLE `transaksi_detail` (
 --
 
 INSERT INTO `transaksi_detail` (`id_transaksi`, `nomor_transaksi`, `dari`, `tujuan`, `kendaraan`, `no_polisi`, `biaya`) VALUES
-(7, 'AJP/20250123/0001', 'Bekasi', 'Banten', 'Inova', '346352', 400000.00),
-(8, 'AJP/20250123/0002', 'Bekasi', 'Bandung', 'Sigra', '345252', 700000.00),
-(8, 'AJP/20250123/0002', 'Bekasi', 'Bandung', 'Ayla', '34622', 700000.00),
-(8, 'AJP/20250123/0002', 'Bekasi', 'Bandung', 'Agya', '865443', 700000.00),
-(9, 'AJP/20250123/0003', 'Madiun', 'Kediri', 'Brio', '999646', 500000.00),
-(9, 'AJP/20250123/0003', 'Surabaya', 'Madura', 'Jazz', '243222', 600000.00),
-(10, 'AJP/20250123/0004', 'Jogja', 'Solo', 'Katana', '998242', 300000.00),
-(10, 'AJP/20250123/0004', 'Jogja', 'Solo', 'Katana', '534222', 300000.00),
-(10, 'AJP/20250123/0004', 'Jogja', 'Solo', 'Katana', '234234', 300000.00),
-(10, 'AJP/20250123/0004', 'Jogja', 'Solo', 'Katana', '2423423', 300000.00),
-(10, 'AJP/20250123/0004', 'Jogja', 'Solo', 'Katana', '235232', 300000.00);
+(12, 'AJP/20250115/0001', 'Tangerang', 'Bekasi', 'Truk Derek', 'F 9101 EF', 600000.00),
+(12, 'AJP/20250115/0001', 'Bekasi', 'Karawang', 'Mobil Derek', 'G 1213 GH', 600000.00),
+(13, 'AJP/20250116/0002', 'Jakarta', 'Depok', 'Motor Derek', 'H 1415 IJ', 700000.00),
+(13, 'AJP/20250116/0002', 'Depok', 'Bogor', 'Truk Derek', 'J 1617 KL', 700000.00),
+(14, 'AJP/20250117/0003', 'Bandung', 'Semarang', 'Mobil Derek', 'K 1819 MN', 800000.00),
+(14, 'AJP/20250117/0003', 'Semarang', 'Yogyakarta', 'Truk Derek', 'L 2021 OP', 800000.00),
+(15, 'AJP/20250118/0004', 'Surabaya', 'Malang', 'Motor Derek', 'M 2223 QR', 650000.00),
+(15, 'AJP/20250118/0004', 'Malang', 'Kediri', 'Mobil Derek', 'N 2425 ST', 650000.00),
+(16, 'AJP/20250119/0005', 'Jakarta', 'Bandung', 'Truk Derek', 'B 1234 XY', 625000.00),
+(16, 'AJP/20250119/0005', 'Bandung', 'Cirebon', 'Mobil Derek', 'D 5678 YZ', 625000.00),
+(17, 'AJP/20250120/0006', 'Surabaya', 'Malang', 'Motor Derek', 'L 9101 AB', 725000.00),
+(17, 'AJP/20250120/0006', 'Malang', 'Banyuwangi', 'Mobil Derek', 'N 1213 CD', 725000.00),
+(18, 'AJP/20250121/0007', 'Semarang', 'Solo', 'Truk Derek', 'H 1415 EF', 875000.00),
+(18, 'AJP/20250121/0007', 'Solo', 'Yogyakarta', 'Mobil Derek', 'AB 1617 GH', 875000.00),
+(19, 'AJP/20250122/0008', 'Medan', 'Pekanbaru', 'Motor Derek', 'BK 1819 IJ', 675000.00),
+(19, 'AJP/20250122/0008', 'Pekanbaru', 'Padang', 'Truk Derek', 'BA 2021 KL', 675000.00),
+(20, 'AJP/20250123/0009', 'Bali', 'Lombok', 'Mobil Derek', 'DK 2223 MN', 750000.00),
+(20, 'AJP/20250123/0009', 'Lombok', 'Sumbawa', 'Truk Derek', 'DR 2425 OP', 750000.00),
+(21, 'AJP/20250124/0010', 'Jakarta', 'Bekasi', 'Truk Derek', 'B 1111 AA', 775000.00),
+(21, 'AJP/20250124/0010', 'Bekasi', 'Karawang', 'Mobil Derek', 'D 2222 BB', 775000.00),
+(22, 'AJP/20250125/0011', 'Surabaya', 'Mojokerto', 'Mobil Derek', 'L 3333 CC', 700000.00),
+(22, 'AJP/20250125/0011', 'Mojokerto', 'Jombang', 'Truk Derek', 'N 4444 DD', 700000.00),
+(23, 'AJP/20250126/0012', 'Bandung', 'Cimahi', 'Motor Derek', 'F 5555 EE', 800000.00),
+(23, 'AJP/20250126/0012', 'Cimahi', 'Garut', 'Mobil Derek', 'Z 6666 FF', 800000.00),
+(24, 'AJP/20250127/0013', 'Semarang', 'Pekalongan', 'Truk Derek', 'H 7777 GG', 825000.00),
+(24, 'AJP/20250127/0013', 'Pekalongan', 'Tegal', 'Mobil Derek', 'K 8888 HH', 825000.00),
+(25, 'AJP/20250128/0014', 'Denpasar', 'Gianyar', 'Motor Derek', 'DK 9999 II', 650000.00),
+(25, 'AJP/20250128/0014', 'Gianyar', 'Karangasem', 'Mobil Derek', 'DR 1010 JJ', 650000.00),
+(26, 'AJP/20250129/0015', 'Medan', 'Binjai', 'Truk Derek', 'BK 1112 KK', 850000.00),
+(26, 'AJP/20250129/0015', 'Binjai', 'Tebing Tinggi', 'Mobil Derek', 'BA 1314 LL', 850000.00);
 
 -- --------------------------------------------------------
 
@@ -268,7 +298,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `user`
