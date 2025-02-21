@@ -8,6 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('landing-page',[logincontroller::class,'landing']);
 Route::get('/login-page',[logincontroller::class,'login_page']);
 Route::get('/dashboard',[logincontroller::class,'dashboard']);
 Route::post('/login',[logincontroller::class,'login']);

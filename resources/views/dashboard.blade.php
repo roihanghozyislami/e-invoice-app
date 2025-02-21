@@ -54,8 +54,6 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Menu</h6>
                             <a class="collapse-item" href="{{url('/transaksi-page')}}">Transaksi</a>
-                            <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penawaran</a>
-                            <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penagihan</a>
                         </div>
                     </div>
                 </li>
@@ -116,67 +114,21 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <a href="#" class="text-decoration-none">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        Total Jumlah Pengaduan
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Total Jumlah Transaksi
                                                     </div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        
+                                                        {{$total_transaksi}}
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <a href="#" class="text-decoration-none">
-                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                        Jumlah Pengaduan Yang Belum Ditanggapai Atau Diproses
-                                                    </div>
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                               
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clock fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <a href="#" class="text-decoration-none">
-                                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        Jumlah Pengaduan Yang Sedang Diproses
-                                                    </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-tools fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -189,15 +141,57 @@
                                             <div class="col mr-2">
                                                 <a href="#" class="text-decoration-none">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                        Jumlah Pengaduan Yang Sudah Selesai
+                                                        Jumlah Transaksi Belum Bayar
                                                     </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                      
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        {{$transaksi_belum_bayar}}
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-check fa-2x text-gray-300"></i>
+                                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <a href="#" class="text-decoration-none">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Jumlah Transaksi Lunas
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        {{$transaksi_lunas}}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-auto">
+                                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <a href="#" class="text-decoration-none">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Jumlah Transaksi Bulan Ini
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        {{$transaksi_hari}}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-auto">
+                                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -206,7 +200,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <a href="#" class="btn btn-success" target="blank">
+                                <a href="#" class="btn btn-primary" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
@@ -218,7 +212,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <a href="#" class="btn btn-info" target="blank">
+                                <a href="#" class="btn btn-primary" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
@@ -230,7 +224,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <a href="#" class="btn btn-warning" target="blank">
+                                <a href="#" class="btn btn-primary" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF

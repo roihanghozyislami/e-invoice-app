@@ -54,8 +54,6 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Menu</h6>
                             <a class="collapse-item font-weight-bold" href="{{url('/invoice-page')}}">Transaksi</a>
-                            <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penawaran</a>
-                            <a class="collapse-item" href="{{url('/admin/aduan_belum_diproses')}}">Penagihan</a>
                         </div>
                     </div>
                 </li>
@@ -126,12 +124,12 @@
 	                                    	<i class="fas fa-check fa-sm"></i>
 	                                    	Telah Dibayar
 	                                    </a>
-	                                    <a href="/transaksi/invoice/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
+	                                    <a href="/transaksi/invoice/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success" target="_blank">
                                     		<i class="fas fa-print fa-sm"></i>
                                     		Buat Invoice
                                     	</a>
 	                                @elseif($transaksi->status === 'Telah Lunas')
-		                                <a href="/transaksi/kwitansi/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success">
+		                                <a href="/transaksi/kwitansi/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success" target="_blank">
 	                                    	<i class="fas fa-print fa-sm"></i>
 	                                    	Buat Kwitansi
 	                                    </a>
