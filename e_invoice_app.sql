@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2025 at 07:47 AM
+-- Generation Time: Mar 20, 2025 at 05:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -95,6 +95,25 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `perusahaan`
+--
+
+CREATE TABLE `perusahaan` (
+  `id_perusahaan` int(11) NOT NULL,
+  `perusahaan` varchar(50) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `perusahaan`
+--
+
+INSERT INTO `perusahaan` (`id_perusahaan`, `perusahaan`, `id_user`) VALUES
+(1, 'PT BINTANG 6', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -112,7 +131,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bI0vHiHglrO6mQqToBZeDyTQ7opQjlxzVnTUbUxp', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiWXU2SlUzVUFVZE9MRGdFZm00blIyZk9NQ0JyZWFmZ29VMkF3WGFjOSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90cmFuc2Frc2ktcGFnZSI7fXM6ODoicGFzc3dvcmQiO3M6NDoid2F3YSI7czo4OiJ1c2VybmFtZSI7czo0OiJ3YXdhIjtzOjQ6Im5hbWEiO3M6Mjg6Ik5hc3l3YSBBdXJlbGxpYSBFbHlzaWEgUHV0cmkiO3M6NToibG9naW4iO2I6MTt9', 1738219555);
+('ACjbrSspmSO2ji5e53wxYxBmoMhPVhpDrIhExObY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNDoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2xhbmRpbmctcGFnZSI7fXM6NjoiX3Rva2VuIjtzOjQwOiJhb3hOYXROakZ2djF5ZUVKSzZvZ2VHQThsQ1hOYndGOXlpQXlxcG91Ijt9', 1739251140),
+('jDcC9Io6QZo69tV6ZJhdZaCTunjG4QLZFYCde2hF', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib21LalBvYUJJSnVuVTVGczFRd3EwVHRVeDUwQ1RWMXJMMkVtQlB2eSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9sb2dpbi1wYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1740107384),
+('sq3vck2ebExZHrHe19zRqYvhjquseMxTVdXNXK7S', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUHBWSjlIcmtFMzlYVlNzYm1Bd2VibXBNbUVkbzlMRlBHdTNYcEZoeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjg6InBhc3N3b3JkIjtzOjQ6Indhd2EiO3M6ODoidXNlcm5hbWUiO3M6NDoid2F3YSI7czo0OiJuYW1hIjtzOjI4OiJOYXN5d2EgQXVyZWxsaWEgRWx5c2lhIFB1dHJpIjtzOjU6ImxvZ2luIjtiOjE7fQ==', 1742444888);
 
 -- --------------------------------------------------------
 
@@ -136,19 +157,19 @@ CREATE TABLE `transaksi` (
 
 INSERT INTO `transaksi` (`id_transaksi`, `nomor_transaksi`, `konsumen`, `total`, `asuransi`, `tanggal`, `status`) VALUES
 (12, 'AJP/20250115/0001', 'Budi Santoso', 1200000.00, 'Ya', '2025-01-15', 'Telah Lunas'),
-(13, 'AJP/20250116/0002', 'Siti Aisyah', 1400000.00, 'Tidak', '2025-01-16', 'Belum Bayar'),
+(13, 'AJP/20250116/0002', 'Siti Aisyah', 1400000.00, 'Tidak', '2025-03-16', 'Belum Bayar'),
 (14, 'AJP/20250117/0003', 'Andi Wijaya', 1600000.00, 'Ya', '2025-01-17', 'Telah Lunas'),
-(15, 'AJP/20250118/0004', 'Dewi Lestari', 1300000.00, 'Tidak', '2025-01-18', 'Belum Bayar'),
+(15, 'AJP/20250118/0004', 'Dewi Lestari', 1300000.00, 'Tidak', '2025-03-18', 'Belum Bayar'),
 (16, 'AJP/20250119/0005', 'Rizky Maulana', 1250000.00, 'Ya', '2025-01-19', 'Telah Lunas'),
-(17, 'AJP/20250120/0006', 'Nina Hartati', 1450000.00, 'Tidak', '2025-01-20', 'Belum Bayar'),
+(17, 'AJP/20250120/0006', 'Nina Hartati', 1450000.00, 'Tidak', '2025-03-20', 'Belum Bayar'),
 (18, 'AJP/20250121/0007', 'Fajar Pratama', 1750000.00, 'Ya', '2025-01-21', 'Telah Lunas'),
-(19, 'AJP/20250122/0008', 'Rahmat Hidayat', 1350000.00, 'Tidak', '2025-01-22', 'Belum Bayar'),
+(19, 'AJP/20250122/0008', 'Rahmat Hidayat', 1350000.00, 'Tidak', '2025-03-22', 'Belum Bayar'),
 (20, 'AJP/20250123/0009', 'Lina Kusuma', 1500000.00, 'Ya', '2025-01-23', 'Telah Lunas'),
 (21, 'AJP/20250124/0010', 'Arief Kurniawan', 1550000.00, 'Tidak', '2025-01-24', 'Belum Bayar'),
-(22, 'AJP/20250125/0011', 'Dina Permata', 1400000.00, 'Ya', '2025-01-25', 'Telah Lunas'),
+(22, 'AJP/20250125/0011', 'Dina Permata', 1400000.00, 'Ya', '2025-02-25', 'Telah Lunas'),
 (23, 'AJP/20250126/0012', 'Joko Susilo', 1600000.00, 'Tidak', '2025-01-26', 'Belum Bayar'),
-(24, 'AJP/20250127/0013', 'Tina Wijaya', 1650000.00, 'Ya', '2025-01-27', 'Telah Lunas'),
-(25, 'AJP/20250128/0014', 'Herman Saputra', 1300000.00, 'Tidak', '2025-01-28', 'Belum Bayar'),
+(24, 'AJP/20250127/0013', 'Tina Wijaya', 1650000.00, 'Ya', '2025-02-27', 'Telah Lunas'),
+(25, 'AJP/20250128/0014', 'Herman Saputra', 1300000.00, 'Tidak', '2025-02-28', 'Belum Bayar'),
 (26, 'AJP/20250129/0015', 'Lisa Andriani', 1700000.00, 'Ya', '2025-01-29', 'Telah Lunas');
 
 -- --------------------------------------------------------
@@ -257,6 +278,12 @@ ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
+-- Indexes for table `perusahaan`
+--
+ALTER TABLE `perusahaan`
+  ADD PRIMARY KEY (`id_perusahaan`);
+
+--
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
@@ -293,6 +320,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `perusahaan`
+--
+ALTER TABLE `perusahaan`
+  MODIFY `id_perusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `transaksi`

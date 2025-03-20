@@ -32,13 +32,13 @@
 			            	</a>
 			            </li>
 			            <li class="nav-item">
-			            	<a class="nav-link mx-1" href="{{url('/pendaftaran')}}">
+			            	<a class="nav-link mx-1" href="#">
 			            		Daftar Sekarang
 			            	</a>
 			            </li>
 		        	</ul>
 		        	<div class="text-center">
-			          	<a href="{{url('/masyarakat_halaman_login')}}" class="btn btn-success">
+			          	<a href="{{url('/login-page')}}" class="btn btn-success">
 			          		Masuk/Login
 			          	</a>
 		        	</div>
@@ -56,7 +56,7 @@
 			            <p class="mb-4">
 			            	Dengan manajemen transaksi yang baik meliputi invoice, nota pembayaran dan laporan transaksi
 			            </p>
-			            <a href="{{url('/pendaftaran')}}" class="btn btn-lg rounded-1" id="btn-primary">
+			            <a href="#" class="btn btn-lg rounded-1" id="btn-primary">
 			            	Daftar Sekarang
 			            </a>
 			            
@@ -134,10 +134,10 @@
 				          		<a href="#home" class="text-secondary mt-4 text-decoration-none">
 				          				Tentang E-Invoice App
 				          		</a>
-				          		<a href="{{url('/pendaftaran')}}" class="text-secondary mt-3 text-decoration-none">
-				          				Daftar
+				          		<a href="#" class="text-secondary mt-3 text-decoration-none">
+				          				Daftar Sekarang
 				          		</a>
-				          		<a href="{{url('/masyarakat_halaman_login')}}" class="text-secondary mt-3 text-decoration-none">
+				          		<a href="{{url('/login-page')}}" class="text-secondary mt-3 text-decoration-none">
 				          				Masuk/Login
 				          		</a>
 				          </div>

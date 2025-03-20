@@ -140,7 +140,7 @@
 
         <div class="footer">
             Terima kasih atas bisnis Anda!<br>
-            Pembayaran ke rekening Bank BCA - 123456789 - Atas PT Asoka Jaya Perkasa
+            Pembayaran ke rekening Bank BCA - 123456789 - Atas Nama PT Asoka Jaya Perkasa
         </div>
     </div>
 </body>

@@ -138,7 +138,7 @@
         </div>
 
         <div class="footer">
-            Terima kasih atas bisnis Anda!<br>
+            Terima kasih atas bisnis Anda<br>
             Kwitansi ini adalah bukti transaksi yang sah
         </div>
     </div>

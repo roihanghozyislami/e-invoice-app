@@ -15,6 +15,12 @@ class logincontroller extends Controller
     }
 
     public function dashboard(){
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $today = Carbon::today();
+        $currentYear = Carbon::now()->year;
+
         if (!session::get('login')) {
             return redirect('/login-page')->with('belum_login','Kamu Harus Login Dulu....');
         }else{
@@ -32,12 +38,19 @@ class logincontroller extends Controller
                 ->where('status','Telah Lunas')
                 ->count();
 
-            $transaksi_hari = DB::table('transaksi')
-                ->whereDate('tanggal', Carbon::today())
-                ->get()
-                ->count();   
+            $transaksi_bulan = DB::table('transaksi')
+                ->whereBetween('tanggal', [$startOfMonth, $endOfMonth])
+                ->count(); 
 
-            return view('dashboard', compact('total_transaksi','transaksi_belum_bayar','transaksi_lunas','transaksi_hari'));
+            $transaksi_hari = DB::table('transaksi')
+                ->whereDate('tanggal', '=', $today)
+                ->count(); 
+
+            $transaksi_tahun = DB::table('transaksi')
+                ->whereYear('tanggal', '=', $currentYear)
+                ->count(); 
+
+            return view('dashboard', compact('total_transaksi','transaksi_belum_bayar','transaksi_lunas','transaksi_bulan','transaksi_hari','transaksi_tahun'));
         }
     }
 
