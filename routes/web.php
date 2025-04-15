@@ -23,3 +23,7 @@ Route::get('/transaksi-detail/{id}',[transaksicontroller::class,'detail']);
 Route::get('/transaksi/invoice/{id}',[transaksicontroller::class,'invoice']);
 Route::get('/transaksi/kwitansi/{id}',[transaksicontroller::class,'kwitansi']);
 Route::get('/transaksi/cari',[transaksicontroller::class,'cari']);
+
+Route::get('/download/all',[transaksicontroller::class,'downloadall']);
+Route::get('/download/pending',[transaksicontroller::class,'downloadpending']);
+Route::get('/download/done',[transaksicontroller::class,'downloaddone']);

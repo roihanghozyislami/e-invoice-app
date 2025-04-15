@@ -140,4 +140,24 @@ class transaksicontroller extends Controller
         $pdf = PDF::loadview('kwitansi', compact('transaksi', 'transaksi_detail'));
         return $pdf->stream('Kwitansi-$id.pdf');
     }
+
+    public function downloadall(){
+        $transaksi = DB::table('transaksi')->get();
+ 
+        $pdf = PDF::loadview('laporan_all', compact('transaksi'));
+        return $pdf->stream('laporan_all.pdf');
+    }
+
+    public function downloadpending(){
+        $transaksi = DB::table('transaksi')->where('status','Belum Bayar')->get();
+ 
+        $pdf = PDF::loadview('laporan_pending', compact('transaksi'));
+        return $pdf->stream('laporan_pending.pdf');
+    }
+    public function downloaddone(){
+        $transaksi = DB::table('transaksi')->where('status','Telah Lunas')->get();
+ 
+        $pdf = PDF::loadview('laporan_done', compact('transaksi'));
+        return $pdf->stream('laporan_done.pdf');
+    }
 }

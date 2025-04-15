@@ -179,7 +179,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <a href="#" class="btn btn-primary" target="blank">
+                                <a href="{{url('/download/all')}}" class="btn btn-primary" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
@@ -191,7 +191,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <a href="#" class="btn btn-success" target="blank">
+                                <a href="{{url('/download/pending')}}" class="btn btn-success" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
@@ -203,7 +203,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <a href="#" class="btn btn-info" target="blank">
+                                <a href="{{url('/download/done')}}" class="btn btn-info" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
