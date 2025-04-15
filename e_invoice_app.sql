@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2025 at 05:58 AM
+-- Generation Time: Apr 15, 2025 at 03:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -132,6 +132,7 @@ CREATE TABLE `sessions` (
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('ACjbrSspmSO2ji5e53wxYxBmoMhPVhpDrIhExObY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNDoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2xhbmRpbmctcGFnZSI7fXM6NjoiX3Rva2VuIjtzOjQwOiJhb3hOYXROakZ2djF5ZUVKSzZvZ2VHQThsQ1hOYndGOXlpQXlxcG91Ijt9', 1739251140),
+('HuhhLRAvKXGJOe8EKvPAUP0KA0FHWQ9YFUIBWjhI', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiMk96VlhBbXBoMU4wTG1TZ0I1czJOcVJ6dXZXbXowZTFkclp0RGpQaiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kb3dubG9hZC9kb25lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo4OiJwYXNzd29yZCI7czo0OiJ3YXdhIjtzOjg6InVzZXJuYW1lIjtzOjQ6Indhd2EiO3M6NDoibmFtYSI7czoyODoiTmFzeXdhIEF1cmVsbGlhIEVseXNpYSBQdXRyaSI7czo1OiJsb2dpbiI7YjoxO30=', 1744720402),
 ('jDcC9Io6QZo69tV6ZJhdZaCTunjG4QLZFYCde2hF', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib21LalBvYUJJSnVuVTVGczFRd3EwVHRVeDUwQ1RWMXJMMkVtQlB2eSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9sb2dpbi1wYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1740107384),
 ('sq3vck2ebExZHrHe19zRqYvhjquseMxTVdXNXK7S', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUHBWSjlIcmtFMzlYVlNzYm1Bd2VibXBNbUVkbzlMRlBHdTNYcEZoeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjg6InBhc3N3b3JkIjtzOjQ6Indhd2EiO3M6ODoidXNlcm5hbWUiO3M6NDoid2F3YSI7czo0OiJuYW1hIjtzOjI4OiJOYXN5d2EgQXVyZWxsaWEgRWx5c2lhIFB1dHJpIjtzOjU6ImxvZ2luIjtiOjE7fQ==', 1742444888);
 
