@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2025 at 03:35 PM
+-- Generation Time: Apr 29, 2025 at 08:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -131,10 +131,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('ACjbrSspmSO2ji5e53wxYxBmoMhPVhpDrIhExObY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNDoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2xhbmRpbmctcGFnZSI7fXM6NjoiX3Rva2VuIjtzOjQwOiJhb3hOYXROakZ2djF5ZUVKSzZvZ2VHQThsQ1hOYndGOXlpQXlxcG91Ijt9', 1739251140),
-('HuhhLRAvKXGJOe8EKvPAUP0KA0FHWQ9YFUIBWjhI', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiMk96VlhBbXBoMU4wTG1TZ0I1czJOcVJ6dXZXbXowZTFkclp0RGpQaiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kb3dubG9hZC9kb25lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo4OiJwYXNzd29yZCI7czo0OiJ3YXdhIjtzOjg6InVzZXJuYW1lIjtzOjQ6Indhd2EiO3M6NDoibmFtYSI7czoyODoiTmFzeXdhIEF1cmVsbGlhIEVseXNpYSBQdXRyaSI7czo1OiJsb2dpbiI7YjoxO30=', 1744720402),
-('jDcC9Io6QZo69tV6ZJhdZaCTunjG4QLZFYCde2hF', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib21LalBvYUJJSnVuVTVGczFRd3EwVHRVeDUwQ1RWMXJMMkVtQlB2eSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9sb2dpbi1wYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1740107384),
-('sq3vck2ebExZHrHe19zRqYvhjquseMxTVdXNXK7S', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUHBWSjlIcmtFMzlYVlNzYm1Bd2VibXBNbUVkbzlMRlBHdTNYcEZoeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjg6InBhc3N3b3JkIjtzOjQ6Indhd2EiO3M6ODoidXNlcm5hbWUiO3M6NDoid2F3YSI7czo0OiJuYW1hIjtzOjI4OiJOYXN5d2EgQXVyZWxsaWEgRWx5c2lhIFB1dHJpIjtzOjU6ImxvZ2luIjtiOjE7fQ==', 1742444888);
+('IzhA8QtWkmYF015pIi3KFOEuhZS9TxuT4giFoTB0', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2xvZ2luLXBhZ2UiO31zOjY6Il90b2tlbiI7czo0MDoiUEVTaHNMdGhvYmowY3JUMUdlRW5ET1E5alZGdzUxRDZjMk1IWFNHdyI7fQ==', 1745906423);
 
 -- --------------------------------------------------------
 
@@ -171,7 +168,9 @@ INSERT INTO `transaksi` (`id_transaksi`, `nomor_transaksi`, `konsumen`, `total`,
 (23, 'AJP/20250126/0012', 'Joko Susilo', 1600000.00, 'Tidak', '2025-01-26', 'Belum Bayar'),
 (24, 'AJP/20250127/0013', 'Tina Wijaya', 1650000.00, 'Ya', '2025-02-27', 'Telah Lunas'),
 (25, 'AJP/20250128/0014', 'Herman Saputra', 1300000.00, 'Tidak', '2025-02-28', 'Belum Bayar'),
-(26, 'AJP/20250129/0015', 'Lisa Andriani', 1700000.00, 'Ya', '2025-01-29', 'Telah Lunas');
+(26, 'AJP/20250129/0015', 'Lisa Andriani', 1700000.00, 'Ya', '2025-01-29', 'Telah Lunas'),
+(27, 'AJP/20250420/0001', 'Erpian', 1200000.00, 'Ya', '2025-04-20', 'Telah Lunas'),
+(28, 'AJP/20250428/0001', 'Wanto', 800000.00, 'Ya', '2025-04-28', 'Belum Bayar');
 
 -- --------------------------------------------------------
 
@@ -223,7 +222,10 @@ INSERT INTO `transaksi_detail` (`id_transaksi`, `nomor_transaksi`, `dari`, `tuju
 (25, 'AJP/20250128/0014', 'Denpasar', 'Gianyar', 'Motor Derek', 'DK 9999 II', 650000.00),
 (25, 'AJP/20250128/0014', 'Gianyar', 'Karangasem', 'Mobil Derek', 'DR 1010 JJ', 650000.00),
 (26, 'AJP/20250129/0015', 'Medan', 'Binjai', 'Truk Derek', 'BK 1112 KK', 850000.00),
-(26, 'AJP/20250129/0015', 'Binjai', 'Tebing Tinggi', 'Mobil Derek', 'BA 1314 LL', 850000.00);
+(26, 'AJP/20250129/0015', 'Binjai', 'Tebing Tinggi', 'Mobil Derek', 'BA 1314 LL', 850000.00),
+(27, 'AJP/20250420/0001', 'Subang', 'VGH', 'Xenia', 'B 2423 FSD', 600000.00),
+(27, 'AJP/20250420/0001', 'Karawang', 'VGH', 'Avanza', 'B 4235 FSD', 600000.00),
+(28, 'AJP/20250428/0001', 'Cirebon', 'Pemalang', 'L300', 'B 2352 FSA', 800000.00);
 
 -- --------------------------------------------------------
 
@@ -332,7 +334,7 @@ ALTER TABLE `perusahaan`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `user`

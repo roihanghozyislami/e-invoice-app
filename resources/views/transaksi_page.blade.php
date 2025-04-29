@@ -112,14 +112,19 @@
 	                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
 	                    aria-expanded="true" aria-controls="collapseUtilities">
 	                    <i class="fas fa-fw fa-wrench"></i>
-	                    <span>Data Master</span>
+	                    <span>Laporan</span>
 	                </a>
 	                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
 	                    data-parent="#accordionSidebar">
 	                    <div class="bg-white py-2 collapse-inner rounded">
-	                        <h6 class="collapse-header">Data Master</h6>
-	                        <a class="collapse-item" href="{{url('/user')}}">User</a>
-	                    </div>
+                            <h6 class="collapse-header">Laporan</h6>
+                            <a class="collapse-item" href="{{url('/transaksi/all')}}">Semua Transaksi</a>
+                            <a class="collapse-item" href="{{url('/transaksi/pending')}}">Transaksi Belum Bayar</a>
+                            <a class="collapse-item" href="{{url('/transaksi/done')}}">Transaksi Lunas</a>
+                            <a class="collapse-item" href="{{url('/transaksi/day')}}">Transaksi Hari Ini</a>
+                            <a class="collapse-item" href="{{url('/transaksi/month')}}">Transaksi Bulan Ini</a>
+                            <a class="collapse-item" href="{{url('/transaksi/year')}}">Transaksi Tahun Ini</a>
+                        </div>
 	                </div>
             	</li>
             	<hr class="sidebar-divider d-none d-md-block">

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use PDF;
 use File;
-//use Carbon\Carbon;
+use Carbon\Carbon;
 
 class transaksicontroller extends Controller
 {
@@ -159,5 +159,50 @@ class transaksicontroller extends Controller
  
         $pdf = PDF::loadview('laporan_done', compact('transaksi'));
         return $pdf->stream('laporan_done.pdf');
+    }
+    public function downloadmonth(){
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        $transaksi = DB::table('transaksi')->whereBetween('tanggal', [$startOfMonth, $endOfMonth])->get();
+ 
+        $pdf = PDF::loadview('laporan_month', compact('transaksi'));
+        return $pdf->stream('laporan_month.pdf');
+    }
+
+    public function downloadday(){
+        $today = Carbon::today();
+
+        $transaksi = DB::table('transaksi')->whereDate('tanggal', '=', $today)->get();
+ 
+        $pdf = PDF::loadview('laporan_day', compact('transaksi'));
+        return $pdf->stream('laporan_day.pdf');
+    }
+
+    public function downloadyear(){
+        $currentYear = Carbon::now()->year;
+
+        $transaksi = DB::table('transaksi')->whereYear('tanggal', '=', $currentYear)->get();
+ 
+        $pdf = PDF::loadview('laporan_year', compact('transaksi'));
+        return $pdf->stream('laporan_year.pdf');
+    }
+
+    public function transaksiall(){
+        $transaksi = DB::table('transaksi')->paginate(10);
+ 
+        return view('transaksi_all',['transaksi' => $transaksi]);
+    }
+
+    public function transaksipending(){
+        $transaksi = DB::table('transaksi')->where('status','Belum Bayar')->paginate(10);
+ 
+        return view('transaksi_pending',['transaksi' => $transaksi]);
+    }
+
+    public function transaksidone(){
+        $transaksi = DB::table('transaksi')->where('status','Telah Lunas')->paginate(10);
+ 
+        return view('transaksi_done',['transaksi' => $transaksi]);
     }
 }

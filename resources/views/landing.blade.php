@@ -31,11 +31,6 @@
 			            		Tentang E Invoice App
 			            	</a>
 			            </li>
-			            <li class="nav-item">
-			            	<a class="nav-link mx-1" href="#">
-			            		Daftar Sekarang
-			            	</a>
-			            </li>
 		        	</ul>
 		        	<div class="text-center">
 			          	<a href="{{url('/login-page')}}" class="btn btn-success">
@@ -56,10 +51,6 @@
 			            <p class="mb-4">
 			            	Dengan manajemen transaksi yang baik meliputi invoice, nota pembayaran dan laporan transaksi
 			            </p>
-			            <a href="#" class="btn btn-lg rounded-1" id="btn-primary">
-			            	Daftar Sekarang
-			            </a>
-			            
 		        	</div>
 		        </div>
 	    	</div>
@@ -76,7 +67,7 @@
 			        	<div class="col text-center py-5 text-white">
 			            	<i class="fa-solid fa-users fa-2xl mb-4"></i>
 			            	<p>
-			              		Daftar & Masuk
+			              		Masuk/Login
 			            	</p>
 			          	</div>
 			          	<div class="col text-center py-5 text-white">
@@ -133,9 +124,6 @@
 				          		</h2>
 				          		<a href="#home" class="text-secondary mt-4 text-decoration-none">
 				          				Tentang E-Invoice App
-				          		</a>
-				          		<a href="#" class="text-secondary mt-3 text-decoration-none">
-				          				Daftar Sekarang
 				          		</a>
 				          		<a href="{{url('/login-page')}}" class="text-secondary mt-3 text-decoration-none">
 				          				Masuk/Login

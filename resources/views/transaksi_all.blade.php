@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Transaksi Detail | E-Invoice App</title>
+		<title>Transaksi All | E-Invoice App</title>
 		
 	    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
 	    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -45,29 +45,29 @@
             	<div class="sidebar-heading">
                 	Menu
             	</div>
-            	<li class="nav-item active">
+            	<li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>Invoice</span>
+                        <span>Menu</span>
                     </a>
-                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Menu</h6>
-                            <a class="collapse-item font-weight-bold" href="{{url('/invoice-page')}}">Transaksi</a>
+                            <a class="collapse-item" href="{{url('/transaksi-page')}}">Transaksi</a>
                         </div>
                     </div>
                 </li>
-            	<li class="nav-item">
+            	<li class="nav-item active">
 	                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
 	                    aria-expanded="true" aria-controls="collapseUtilities">
 	                    <i class="fas fa-fw fa-wrench"></i>
 	                    <span>Laporan</span>
 	                </a>
-	                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+	                <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
 	                    data-parent="#accordionSidebar">
 	                    <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Laporan</h6>
-                            <a class="collapse-item" href="{{url('/transaksi/all')}}">Semua Transaksi</a>
+                            <a class="collapse-item font-weight-bold" href="{{url('/transaksi/all')}}">Semua Transaksi</a>
                             <a class="collapse-item" href="{{url('/transaksi/pending')}}">Transaksi Belum Bayar</a>
                             <a class="collapse-item" href="{{url('/transaksi/done')}}">Transaksi Lunas</a>
                             <a class="collapse-item" href="{{url('/transaksi/day')}}">Transaksi Hari Ini</a>
@@ -92,7 +92,36 @@
 						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 	                        <i class="fa fa-bars"></i>
 	                    </button>
+	                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="{{url('/transaksi-page')}}">
+	                        <div class="input-group">
+	                            <input type="text" class="form-control bg-light border-0 small" placeholder="Telusuri Berdasarkan Nomor Invoice..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ old('cari', $keyword ?? '') }}">
+	                            <div class="input-group-append">
+	                                <button class="btn btn-primary" type="submit">
+	                                    <i class="fas fa-search fa-sm"></i>
+	                                </button>
+	                            </div>
+	                        </div>
+	                    </form>
 	                    <ul class="navbar-nav ml-auto">
+	                    	<li class="nav-item dropdown no-arrow d-sm-none">
+	                    		<a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+	                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                                <i class="fas fa-search fa-fw"></i>
+	                            </a>
+	                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+	                                aria-labelledby="searchDropdown">
+	                            	<form class="form-inline mr-auto w-100 navbar-search" method="get" action="{{url('/transaksi-page')}}">
+	                                    <div class="input-group">
+	                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Telusuri Berdasarkan Nomor Invoice..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ old('cari', $keyword ?? '') }}">
+	                                        <div class="input-group-append">
+	                                            <button class="btn btn-primary" type="submit">
+	                                                <i class="fas fa-search fa-sm"></i>
+	                                            </button>
+	                                        </div>
+	                                    </div>
+	                                </form>
+	                            </div>
+	                    	</li>
 	                    	<div class="topbar-divider d-none d-sm-block"></div>
 	                    	<li class="nav-item dropdown no-arrow">
 	                    		<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -112,92 +141,60 @@
 	                    </ul>
 					</nav>
 					<!-- akhir topbar -->
-					
+
 					<div class="container-fluid">
+						<a href="{{url('/transaksi-page')}}" class="btn btn-secondary btn-sm mb-4">
+							<i class="fas fa-redo fa-sm"></i>
+							Refresh
+						</a>
 						<div class="card shadow mb-3">
 							<div class="card-header py-3">
-								<div class="float-left">
-									<h4 class="m-0 font-weight-bold text-gray">Detail Transaksi</h4>
-								</div>
-	                            <div class="float-right">
-	                            	<a href="{{url('/transaksi-page')}}" class="btn btn-sm btn-primary">
-	                            		<i class="fas fa-backward fa-sm"></i>
-	                        			Kembali
-	                        		</a>
-                                    @if($transaksi->status === 'Belum Bayar')
-	                                    <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#telahbayar">
-	                                    	<i class="fas fa-check fa-sm"></i>
-	                                    	Telah Dibayar
-	                                    </a>
-	                                    <a href="/transaksi/invoice/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success" target="_blank">
-                                    		<i class="fas fa-print fa-sm"></i>
-                                    		Buat Invoice
-                                    	</a>
-	                                @elseif($transaksi->status === 'Telah Lunas')
-		                                <a href="/transaksi/kwitansi/{{$transaksi->id_transaksi}}" class="btn btn-sm btn-success" target="_blank">
-	                                    	<i class="fas fa-print fa-sm"></i>
-	                                    	Buat Kwitansi
-	                                    </a>
-                                    @endif
-                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapus">
-                                    	<i class="fas fa-trash fa-sm"></i>
-                                    	Hapus Transaksi
-                                    </a>
-	                            </div>
+	                            <h4 class="m-0 font-weight-bold text-gray">Data Semua Transaksi</h4>
 	                        </div>
 	                        <div class="card-body">
-	                        	<div class="form-group">
-	                        		<strong>Nomor Transaksi :</strong> {{ $transaksi->nomor_transaksi }}<br>
-							        <strong>Konsumen :</strong> {{ $transaksi->konsumen }}<br>
-							        <strong>Tanggal :</strong> {{ $transaksi->tanggal }}<br>
-							        <strong>Asuransi :</strong> {{ $transaksi->asuransi }}<br>
-							        <strong>Status :</strong>
-							        <span class="badge text-white @if($transaksi->status === 'Telah Lunas') bg-success @else bg-danger @endif">
-				                    	{{ $transaksi->status }}
-					                </span>
-							        <br>
-							        <strong>Total Biaya :</strong> Rp {{ number_format($transaksi->total, 0, ',', '.') }}<br>
+	                        	<div class="table-responsive">
+	                        		<table class="table table-borderless rounded shadow small">
+		                                <thead>
+		                                    <tr>
+		                                        <th>Nomor Transaksi</th>
+		                                        <th>Konsumen</th>
+		                                        <th>Total</th>
+		                                        <th>Asuransi</th>
+		                                        <th>Tanggal</th>
+		                                        <th>Status</th>
+		                                    </tr>
+		                                </thead>
+		                                <tbody>
+		                                   
+		                                    @forelse($transaksi as $data)
+		                                    <tr>
+		                                        <td>{{$data->nomor_transaksi}}</td>
+		                                        <td>{{$data->konsumen}}</td>
+		                                        <td>Rp {{ number_format($data->total, 0, ',', '.') }}</td>
+		                                        <td>
+		                                        	{{$data->asuransi}}
+		                                        </td>
+		                                        <td>{{$data->tanggal}}</td>
+		                                        <td>
+		                                        	<span class="badge text-white
+									                    @if($data->status === 'Telah Lunas') bg-success
+									                    @else bg-danger
+									                    @endif">
+									                    {{ $data->status }}
+									                </span>
+		                                        </td>
+		                                    </tr>
+		                                    @empty
+		                                    <tr>
+                        						<td colspan="5" class="text-center">Tidak ada data ditemukan.</td>
+                    						</tr>
+		                                </tbody>
+		                                    @endforelse
+		                            </table>
 	                        	</div>
-	                        	<hr>
-	                        	<div class="form-group table-responsive">
-	                        		<h5>Detail Kendaraan</h5>
-								    <table class="table table-bordered small">
-								        <thead>
-								            <tr>
-								                <th>No</th>
-								                <th>Dari</th>
-								                <th>Tujuan</th>
-								                <th>Kendaraan</th>
-								                <th>No Polisi</th>
-								                <th>Biaya</th>
-								            </tr>
-								        </thead>
-								        <tbody>
-								            @forelse ($transaksi_detail as $index => $detail)
-								            <tr>
-								                <td>{{ $index + 1 }}</td>
-								                <td>{{ $detail->dari }}</td>
-								                <td>{{ $detail->tujuan }}</td>
-								                <td>{{ $detail->kendaraan }}</td>
-								                <td>{{ $detail->no_polisi }}</td>
-								                <td> Rp {{ number_format($detail->biaya, 0, ',', '.') }}</td>
-								            </tr>
-								            @empty
-								            <tr>
-								                <td colspan="6" class="text-center">Tidak ada detail transaksi</td>
-								            </tr>
-								            @endforelse
-								        </tbody>
-								    </table>
-
-	                        	</div>
-	                        </div>
-	                        <div class="card-footer">
-	                        	<a href="{{url('/transaksi-page')}}" class="btn btn-sm btn-primary">
-	                        		Kembali
-	                        	</a>
 	                        </div>
 						</div>
+						{{ $transaksi->links() }}
 					</div>
 				</div>
 				<!-- akhir isi inti -->
@@ -237,69 +234,13 @@
 	                	Jika Yakin, Silahkan Pilih Keluar
 	                </div>
 	                <div class="modal-footer">
-	                    <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">
-	                    	X Batal
+	                    <button class="btn btn-primary" type="button" data-dismiss="modal">
+	                    	<i class="fas fa-stop-circle fa-sm"></i>
+	                    	Batal
 	                    </button>
-	                    <a class="btn btn-sm btn-danger" href="{{url('/logout')}}">
+	                    <a class="btn btn-danger" href="{{url('/logout')}}">
 	                    	<i class="fas fa-sign-out-alt fa-sm"></i>
 	                    	Keluar
-	                    </a>
-	                </div>
-	            </div>
-	        </div>
-    	</div>
-	 	
-
-	 	<div class="modal fade" id="telahbayar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-	        <div class="modal-dialog modal-dialog-centered" role="document">
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <h5 class="modal-title" id="exampleModalLabel">
-	                    	Yakin transaksi telah dibayar lunas ?
-	                    </h5>
-	                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-	                        <span aria-hidden="true">×</span>
-	                    </button>
-	                </div>
-	                <div class="modal-body">
-	                	Jika yakin, Silahkan pilih ya
-	                </div>
-	                <div class="modal-footer">
-	                    <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">
-	                    	X Batal
-	                    </button>
-	                    <a class="btn btn-sm btn-success" href="/transaksi/lunas/{{$transaksi->id_transaksi}}">
-	                    	<i class="fas fa-check fa-sm"></i>
-	                    	Ya
-	                    </a>
-	                </div>
-	            </div>
-	        </div>
-    	</div>
-
-    	<div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-	        <div class="modal-dialog modal-dialog-centered" role="document">
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <h5 class="modal-title" id="exampleModalLabel">
-	                    	Yakin transaksi ingin dihapus ?
-	                    </h5>
-	                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-	                        <span aria-hidden="true">×</span>
-	                    </button>
-	                </div>
-	                <div class="modal-body">
-	                	Jika yakin, Silahkan pilih ya
-	                </div>
-	                <div class="modal-footer">
-	                    <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">
-	                    	X Batal
-	                    </button>
-	                    <a class="btn btn-sm btn-danger" href="/transaksi/delete/{{$transaksi->id_transaksi}}">
-	                    	<i class="fas fa-check fa-sm"></i>
-	                    	Ya
 	                    </a>
 	                </div>
 	            </div>

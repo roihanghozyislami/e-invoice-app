@@ -24,6 +24,16 @@ Route::get('/transaksi/invoice/{id}',[transaksicontroller::class,'invoice']);
 Route::get('/transaksi/kwitansi/{id}',[transaksicontroller::class,'kwitansi']);
 Route::get('/transaksi/cari',[transaksicontroller::class,'cari']);
 
+Route::get('/transaksi/all',[transaksicontroller::class,'transaksiall']);
+Route::get('/transaksi/pending',[transaksicontroller::class,'transaksipending']);
+Route::get('/transaksi/done',[transaksicontroller::class,'transaksidone']);
+Route::get('/transaksi/month',[transaksicontroller::class,'transaksimonth']);
+Route::get('/transaksi/day',[transaksicontroller::class,'transaksiday']);
+Route::get('/transaksi/year',[transaksicontroller::class,'transaksiyear']);
+
 Route::get('/download/all',[transaksicontroller::class,'downloadall']);
 Route::get('/download/pending',[transaksicontroller::class,'downloadpending']);
 Route::get('/download/done',[transaksicontroller::class,'downloaddone']);
+Route::get('/download/month',[transaksicontroller::class,'downloadmonth']);
+Route::get('/download/day',[transaksicontroller::class,'downloadday']);
+Route::get('/download/year',[transaksicontroller::class,'downloadyear']);

@@ -61,13 +61,18 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fas fa-fw fa-wrench"></i>
-                        <span>Data Master</span>
+                        <span>Laporan</span>
                     </a>
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Data Master</h6>
-                            <a class="collapse-item" href="{{url('/perusahaan-page')}}">Perusahaan</a>
+                             <h6 class="collapse-header">Laporan</h6>
+                            <a class="collapse-item" href="{{url('/transaksi/all')}}">Semua Transaksi</a>
+                            <a class="collapse-item" href="{{url('/transaksi/pending')}}">Transaksi Belum Bayar</a>
+                            <a class="collapse-item" href="{{url('/transaksi/done')}}">Transaksi Lunas</a>
+                            <a class="collapse-item" href="{{url('/transaksi/day')}}">Transaksi Hari Ini</a>
+                            <a class="collapse-item" href="{{url('/transaksi/month')}}">Transaksi Bulan Ini</a>
+                            <a class="collapse-item" href="{{url('/transaksi/year')}}">Transaksi Tahun Ini</a>
                         </div>
                     </div>
                 </li>
@@ -114,67 +119,67 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <a href="#" class="text-decoration-none">
+                                <a href="{{url('/transaksi/all')}}" class="text-decoration-none">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                        Total Jumlah Transaksi
+                                                        Semua Transaksi
                                                     </div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                         {{$total_transaksi}}
                                                     </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div>  
+                                </a>
                             </div>
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <a href="#" class="text-decoration-none">
+                                <a href="{{url('/transaksi/pending')}}" class="text-decoration-none">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        Jumlah Transaksi Belum Bayar
+                                                        Transaksi Belum Bayar
                                                     </div>
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                                         {{$transaksi_belum_bayar}}
                                                     </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto">
-                                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
+                                                <div class="col-auto">
+                                                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> 
+                                </a>
                             </div>
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <a href="#" class="text-decoration-none">
-                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                        Jumlah Transaksi Lunas
-                                                    </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                        {{$transaksi_lunas}}
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto">
-                                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                <a href="{{url('/transaksi/done')}}" class="text-decoration-none">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                            Transaksi Lunas
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            {{$transaksi_lunas}}
+                                                        </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <div class="row">
@@ -224,7 +229,7 @@
                                             <div class="col mr-2">
                                                 <a href="#" class="text-decoration-none">
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        Jumlah Transaksi Bulan Ini
+                                                        Transaksi Bulan Ini
                                                     </div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                         {{$transaksi_bulan}}
@@ -245,7 +250,7 @@
                                             <div class="col mr-2">
                                                 <a href="#" class="text-decoration-none">
                                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                        Jumlah Transaksi Hari Ini
+                                                        Transaksi Hari Ini
                                                     </div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                         {{$transaksi_hari}}
@@ -266,7 +271,7 @@
                                             <div class="col mr-2">
                                                 <a href="#" class="text-decoration-none">
                                                     <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                                        Jumlah Transaksi Tahun Ini
+                                                        Transaksi Tahun Ini
                                                     </div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                         {{$transaksi_tahun}}
@@ -283,7 +288,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <a href="#" class="btn btn-warning" target="blank">
+                                <a href="{{url('/download/month')}}" class="btn btn-warning" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
@@ -295,7 +300,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <a href="#" class="btn btn-danger" target="blank">
+                                <a href="{{url('/download/day')}}" class="btn btn-danger" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
@@ -307,7 +312,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-4 col-md-6 mb-4">
-                                <a href="#" class="btn btn-secondary" target="blank">
+                                <a href="{{url('/download/year')}}" class="btn btn-secondary" target="blank">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             Download Data PDF
