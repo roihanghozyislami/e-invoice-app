@@ -205,4 +205,29 @@ class transaksicontroller extends Controller
  
         return view('transaksi_done',['transaksi' => $transaksi]);
     }
+
+    public function transaksimonth(){
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        $transaksi = DB::table('transaksi')->whereBetween('tanggal', [$startOfMonth, $endOfMonth])->paginate(10);
+ 
+        return view('transaksi_month',['transaksi' => $transaksi]);
+    }
+
+    public function transaksiday(){
+        $today = Carbon::today();
+
+        $transaksi = DB::table('transaksi')->whereDate('tanggal', '=', $today)->paginate(10);
+ 
+        return view('transaksi_day',['transaksi' => $transaksi]);
+    }
+
+    public function transaksiyear(){
+        $currentYear = Carbon::now()->year;
+
+        $transaksi = DB::table('transaksi')->whereYear('tanggal', '=', $currentYear)->paginate(10);
+ 
+        return view('transaksi_year',['transaksi' => $transaksi]);
+    }
 }

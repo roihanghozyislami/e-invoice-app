@@ -21,37 +21,34 @@ class logincontroller extends Controller
         $today = Carbon::today();
         $currentYear = Carbon::now()->year;
 
-        if (!session::get('login')) {
-            return redirect('/login-page')->with('belum_login','Kamu Harus Login Dulu....');
-        }else{
-             $total_transaksi = DB::table('transaksi')
-                ->get()
-                ->count();
+        
+        $total_transaksi = DB::table('transaksi')
+            ->get()
+            ->count();
 
-            $transaksi_belum_bayar = DB::table('transaksi')
-                ->get()
-                ->where('status','Belum Bayar')
-                ->count();
+        $transaksi_belum_bayar = DB::table('transaksi')
+            ->get()
+            ->where('status','Belum Bayar')
+            ->count();
 
-            $transaksi_lunas = DB::table('transaksi')
-                ->get()
-                ->where('status','Telah Lunas')
-                ->count();
+        $transaksi_lunas = DB::table('transaksi')
+            ->get()
+            ->where('status','Telah Lunas')
+            ->count();
 
-            $transaksi_bulan = DB::table('transaksi')
-                ->whereBetween('tanggal', [$startOfMonth, $endOfMonth])
-                ->count(); 
+        $transaksi_bulan = DB::table('transaksi')
+            ->whereBetween('tanggal', [$startOfMonth, $endOfMonth])
+            ->count(); 
 
-            $transaksi_hari = DB::table('transaksi')
-                ->whereDate('tanggal', '=', $today)
-                ->count(); 
+        $transaksi_hari = DB::table('transaksi')
+            ->whereDate('tanggal', '=', $today)
+            ->count(); 
 
-            $transaksi_tahun = DB::table('transaksi')
-                ->whereYear('tanggal', '=', $currentYear)
-                ->count(); 
+        $transaksi_tahun = DB::table('transaksi')
+            ->whereYear('tanggal', '=', $currentYear)
+            ->count(); 
 
-            return view('dashboard', compact('total_transaksi','transaksi_belum_bayar','transaksi_lunas','transaksi_bulan','transaksi_hari','transaksi_tahun'));
-        }
+        return view('dashboard', compact('total_transaksi','transaksi_belum_bayar','transaksi_lunas','transaksi_bulan','transaksi_hari','transaksi_tahun'));
     }
 
     public function login(){

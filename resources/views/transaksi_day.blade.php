@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Transaksi Done | E-Invoice App</title>
+		<title>Transaksi Hari Ini | E-Invoice App</title>
 		
 	    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
 	    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -69,8 +69,8 @@
                             <h6 class="collapse-header">Laporan</h6>
                             <a class="collapse-item" href="{{url('/transaksi/all')}}">Semua Transaksi</a>
                             <a class="collapse-item" href="{{url('/transaksi/pending')}}">Transaksi Belum Bayar</a>
-                            <a class="collapse-item font-weight-bold" href="{{url('/transaksi/done')}}">Transaksi Lunas</a>
-                            <a class="collapse-item" href="{{url('/transaksi/day')}}">Transaksi Hari Ini</a>
+                            <a class="collapse-item " href="{{url('/transaksi/done')}}">Transaksi Lunas</a>
+                            <a class="collapse-item font-weight-bold" href="{{url('/transaksi/day')}}">Transaksi Hari Ini</a>
                             <a class="collapse-item" href="{{url('/transaksi/month')}}">Transaksi Bulan Ini</a>
                             <a class="collapse-item" href="{{url('/transaksi/year')}}">Transaksi Tahun Ini</a>
                         </div>
@@ -149,7 +149,7 @@
 						</a>
 						<div class="card shadow mb-3">
 							<div class="card-header py-3">
-	                            <h4 class="m-0 font-weight-bold text-gray">Data Transaksi Lunas</h4>
+	                            <h4 class="m-0 font-weight-bold text-gray">Data Transaksi Hari Ini</h4>
 	                        </div>
 	                        <div class="card-body">
 	                        	<div class="table-responsive">
